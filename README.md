@@ -1,6 +1,6 @@
 # MasterDev Portfolio
 
-A modern, animated developer portfolio built with Next.js, React, Tailwind CSS, and Three.js. Showcases projects, journey, and contact information with beautiful dark theme and interactive UI.
+A modern, animated developer portfolio built with Next.js, React and Tailwind CSS. Showcases projects, journey, and contact information with beautiful dark theme and interactive UI.
 
 ## 🚀 Features
 - Animated hero section with typewriter effect
@@ -15,7 +15,6 @@ A modern, animated developer portfolio built with Next.js, React, Tailwind CSS, 
 - **Framework:** Next.js, React
 - **Styling:** Tailwind CSS
 - **Animation:** Framer Motion
-- **3D/Globe:** Three.js, three-globe, @react-three/fiber, @react-three/drei
 - **Icons:** react-icons
 
 ## 📦 Setup & Installation
