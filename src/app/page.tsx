@@ -72,7 +72,7 @@ export default function Home() {
   }, []);
 
   // Typewriter effect for about/intro text
-  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what's possible with AI technology.";
+  const aboutText = "B.Tech (CSE - AI) graduate (2025) and current Full Stack Developer Intern with a strong focus on building responsive, user-centric applications. Skilled in bridging elegant frontends with scalable, efficient backends. Passionate about crafting clean, maintainable code and delivering seamless user experiences. Actively exploring Generative AI and machine learning to develop innovative, impactful solutions..";
   const [typedAbout, setTypedAbout] = useState("");
   useEffect(() => {
     let i = 0;
