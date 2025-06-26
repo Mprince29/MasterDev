@@ -72,19 +72,21 @@ export default function Home() {
   }, []);
 
   // Typewriter effect for about/intro text
-  const aboutText = "B.Tech (CSE - AI) graduate (2025) and current Full Stack Developer Intern with a strong focus on building responsive, user-centric applications. Skilled in bridging elegant frontends with scalable, efficient backends. Passionate about crafting clean, maintainable code and delivering seamless user experiences. Actively exploring Generative AI and machine learning to develop innovative, impactful solutions..";
+  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full-stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what's possible with AI technology.";
   const [typedAbout, setTypedAbout] = useState("");
   useEffect(() => {
-    let i = 0;
-    setTypedAbout("");
+    setVisibleLines(0);
+    if (aboutLines.length === 0) return;
     const interval = setInterval(() => {
-      if (i < aboutText.length) {
-        setTypedAbout((prev) => prev + aboutText[i]);
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 60);
+      setVisibleLines((prev) => {
+        if (prev < aboutLines.length) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          return prev;
+        }
+      });
+    }, 800); // 800ms per line
     return () => clearInterval(interval);
   }, []);
 
@@ -172,11 +174,20 @@ export default function Home() {
              Developer 
           </h2>
           <div className="flex flex-col space-y-6 sm:space-y-8 w-full max-w-6xl">
-            {/* Typewriter About Intro */}
-            <p className="text-base sm:text-lg text-gray-400 w-full max-w-6xl min-h-[3.5rem] px-2 sm:px-6 md:px-16 lg:px-24 xl:px-32 text-left">
-              {typedAbout}
-              <span className="inline-block w-2 h-6 align-middle bg-blue-400 animate-pulse ml-1" />
-            </p>
+            {/* Animated About Intro, line by line with slide-in animation */}
+            <div className="text-base sm:text-lg text-gray-400 w-full max-w-6xl min-h-[3.5rem] px-2 sm:px-6 md:px-16 lg:px-24 xl:px-32 text-left">
+              {aboutLines.slice(0, visibleLines).map((line, idx) => (
+                <motion.p
+                  key={idx}
+                  initial={{ opacity: 0, x: 60 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className="mb-1"
+                >
+                  {line}
+                </motion.p>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
