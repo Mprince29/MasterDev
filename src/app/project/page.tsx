@@ -65,20 +65,20 @@ export default function ProjectPage() {
               Master.dev
             </Link>
             <nav className="flex flex-wrap items-center gap-2 sm:gap-8 text-xs uppercase font-medium">
-              <a
+              <Link
                 href="/project"
                 className={`transition-colors px-1 py-1 rounded-md ${
                   pathname.startsWith('/project') ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
                 } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
               >
                 Projects
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/journey"
                 className="transition-colors px-1 py-1 rounded-md text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow"
               >
                 Journey
-              </a>
+              </Link>
             </nav>
           </div>
           {/* Social Icons */}
@@ -137,14 +137,14 @@ export default function ProjectPage() {
                     </span>
                   ))}
                 </div>
-                <a
+                <Link
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block text-sm sm:text-base font-medium text-blue-500 hover:underline bg-gray-900/60 rounded px-3 sm:px-5 py-2 mt-2 md:self-start whitespace-nowrap"
                 >
                   View Project →
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}
