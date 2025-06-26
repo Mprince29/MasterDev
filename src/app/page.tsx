@@ -31,6 +31,31 @@ export default function Home() {
   const pathname = usePathname();
   const { hasScrolled } = useActiveSection();
 
+  // Animated line-by-line about section
+  const aboutLines = [
+    "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems.",
+    "Passionate about crafting full-stack applications with clean code and exceptional user experiences.",
+    "From responsive frontends to scalable backends, I love building solutions that make a difference.",
+    "Exploring the fascinating world of Generative AI and machine learning.",
+    "Building innovative applications that push the boundaries of what's possible with AI technology."
+  ];
+  const [visibleLines, setVisibleLines] = useState(0);
+  useEffect(() => {
+    setVisibleLines(0);
+    if (aboutLines.length === 0) return;
+    const interval = setInterval(() => {
+      setVisibleLines((prev) => {
+        if (prev < aboutLines.length) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          return prev;
+        }
+      });
+    }, 800); // 800ms per line
+    return () => clearInterval(interval);
+  }, [aboutLines.length]);
+
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -69,25 +94,6 @@ export default function Home() {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
-
-  // Typewriter effect for about/intro text
-  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full-stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what's possible with AI technology.";
-  const [typedAbout, setTypedAbout] = useState("");
-  useEffect(() => {
-    setVisibleLines(0);
-    if (aboutLines.length === 0) return;
-    const interval = setInterval(() => {
-      setVisibleLines((prev) => {
-        if (prev < aboutLines.length) {
-          return prev + 1;
-        } else {
-          clearInterval(interval);
-          return prev;
-        }
-      });
-    }, 800); // 800ms per line
-    return () => clearInterval(interval);
   }, []);
 
   const [year, setYear] = useState<number | null>(null);
@@ -176,7 +182,7 @@ export default function Home() {
           <div className="flex flex-col space-y-6 sm:space-y-8 w-full max-w-6xl">
             {/* Animated About Intro, line by line with slide-in animation */}
             <div className="text-base sm:text-lg text-gray-400 w-full max-w-6xl min-h-[3.5rem] px-2 sm:px-6 md:px-16 lg:px-24 xl:px-32 text-left">
-              {aboutLines.slice(0, visibleLines).map((line, idx) => (
+              {aboutLines.slice(0, visibleLines).map((line: string, idx: number) => (
                 <motion.p
                   key={idx}
                   initial={{ opacity: 0, x: 60 }}
