@@ -1,9 +1,0 @@
-next
-react
-react-dom
-three
-three-globe
-framer-motion
-clsx
-tailwind-merge
-motion 
