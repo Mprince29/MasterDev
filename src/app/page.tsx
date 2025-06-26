@@ -75,9 +75,12 @@ export default function Home() {
     let i = 0;
     setTypedAbout("");
     const interval = setInterval(() => {
-      setTypedAbout((prev) => prev + aboutText[i]);
-      i++;
-      if (i >= aboutText.length) clearInterval(interval);
+      if (i < aboutText.length) {
+        setTypedAbout((prev) => prev + aboutText[i]);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
     }, 60);
     return () => clearInterval(interval);
   }, []);
