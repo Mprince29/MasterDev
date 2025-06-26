@@ -3,6 +3,8 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import Link from "next/link";
+import Image from "next/image";
 
 
 const projects = [
@@ -59,9 +61,9 @@ export default function ProjectPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           {/* Left: Logo and Nav */}
           <div className="flex items-center gap-2 sm:gap-8">
-            <a href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
+            <Link href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
               Master.dev
-            </a>
+            </Link>
             <nav className="flex flex-wrap items-center gap-2 sm:gap-8 text-xs uppercase font-medium">
               <a
                 href="/project"
@@ -112,9 +114,11 @@ export default function ProjectPage() {
             >
               {/* Project Image Placeholder (replace with project.image if available) */}
               <div className="flex-shrink-0 w-full md:w-2/5 h-48 sm:h-56 md:h-auto bg-gray-900 flex items-center justify-center overflow-hidden">
-                <img
+                <Image
                   src={project.image || '/project-placeholder.png'}
                   alt={project.title}
+                  width={400}
+                  height={224}
                   className="w-full h-full object-cover object-center"
                 />
               </div>

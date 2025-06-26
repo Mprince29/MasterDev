@@ -2,44 +2,31 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
-
-import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaEnvelope, FaXRay } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
 
 // Helper to get current anchor link for active state styling
 function useActiveSection() {
-  const [active, setActive] = useState("home");
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setHasScrolled(scrollY > 50);
-
-      const home = document.getElementById("home");
-      const projects = document.getElementById("projects");
-      const contact = document.getElementById("contact");
-
-      if (contact && scrollY >= contact.offsetTop - 100) {
-        setActive("contact");
-      } else if (projects && scrollY >= projects.offsetTop - 100) {
-        setActive("projects");
-      } else {
-        setActive("home");
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return { active, hasScrolled };
+  return { hasScrolled };
 }
 
 export default function Home() {
   const pathname = usePathname();
-  const { active, hasScrolled } = useActiveSection();
-  const [showJourney, setShowJourney] = useState(false);
+  const { hasScrolled } = useActiveSection();
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -82,7 +69,7 @@ export default function Home() {
   }, []);
 
   // Typewriter effect for about/intro text
-  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full-stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what's possible with AI technology.";
+  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I&apos;m currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full-stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what&apos;s possible with AI technology.";
   const [typedAbout, setTypedAbout] = useState("");
   useEffect(() => {
     let i = 0;
@@ -104,38 +91,38 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           {/* Left: Logo and Nav */}
           <div className="flex items-center gap-2 sm:gap-8">
-            <a href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
+            <Link href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
               Master.dev
-            </a>
+            </Link>
             <nav className="flex flex-wrap items-center gap-2 sm:gap-8 text-xs uppercase font-medium">
-              <a
+              <Link
                 href="/"
                 className={`transition-colors px-1 py-1 rounded-md ${
                   pathname === '/' ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
                 } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/project"
                 className={`transition-colors px-1 py-1 rounded-md ${
                   pathname.startsWith('/project') ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
                 } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
               >
                 Projects
-              </a>
+              </Link>
               <a
                 href="#contact"
                 className="transition-colors px-1 py-1 rounded-md text-gray-300 hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow"
               >
                 Contact
               </a>
-              <a
+              <Link
                 href="/journey"
                 className="transition-colors px-1 py-1 rounded-md text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow"
               >
                 Journey
-              </a>
+              </Link>
             </nav>
           </div>
           {/* Social Icons */}
@@ -166,15 +153,17 @@ export default function Home() {
         <div className="flex-1 flex flex-col items-start justify-center w-full min-w-0">
           {/* Avatar */}
           <div className="mb-6 sm:mb-8 w-32 sm:w-40 h-32 sm:h-40 rounded-full overflow-hidden border-4 border-blue-500 shadow-[0_0_40px_#3b82f6] mx-auto md:mx-0">
-            <img
+            <Image
               src="/Mr3W.gif"
               alt="Animated Globe GIF"
+              width={160}
+              height={160}
               className="w-full h-full object-cover"
             />
           </div>
           {/* Headline */}
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
-            Hey, I'm <span className="text-blue-300">Prince </span>
+            Hey, I&apos;m <span className="text-blue-300">Prince </span>
           </h1>
           <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 sm:mb-9 text-white-200">
              Developer 
@@ -214,7 +203,7 @@ export default function Home() {
             variants={itemVariants}
             className="text-gray-400 mb-8 sm:mb-12 max-w-2xl"
           >
-            Here's a list of technologies, tools, and frameworks I've worked with across different domains.
+            Here&apos;s a list of technologies, tools, and frameworks I&apos;ve worked with across different domains.
           </motion.p>
 
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
@@ -238,7 +227,7 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <img src={tool.src} alt={tool.name} className="w-12 h-12" />
+                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
                     <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
                   </motion.div>
                 ))}
@@ -264,7 +253,7 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <img src={tool.src} alt={tool.name} className="w-12 h-12" />
+                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
                     <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
                   </motion.div>
                 ))}
@@ -286,7 +275,7 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <img src={tool.src} alt={tool.name} className="w-12 h-12" />
+                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
                     <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
                   </motion.div>
                 ))}
@@ -311,7 +300,7 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <img src={tool.src} alt={tool.name} className="w-12 h-12" />
+                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
                     <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
                   </motion.div>
                 ))}
@@ -333,7 +322,7 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <img src={tool.src} alt={tool.name} className="w-12 h-12" />
+                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
                     <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
                   </motion.div>
                 ))}
@@ -403,9 +392,11 @@ export default function Home() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-full h-56 bg-gray-900 flex items-center justify-center overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={400}
+                    height={224}
                     className="h-full w-full object-cover rounded-t-2xl transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
@@ -431,12 +422,12 @@ export default function Home() {
             ))}
           </div>
           <div className="flex justify-end items-center pt-6 sm:pt-9">
-            <a
+            <Link
               href="/project"
               className="bg-gradient-to-r from-blue-500 to-white hover:from-blue-600 hover:to-white text-blue-900 font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm sm:text-base"
             >
               View My Work
-            </a>
+            </Link>
           </div>
         </motion.div>
       </motion.section>
@@ -457,10 +448,10 @@ export default function Home() {
               Bringing your ideas to life.
             </h2>
             <h3 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
-              Let's turn your vision into reality
+              Let&apos;s turn your vision into reality
             </h3>
             <p className="text-gray-400 text-lg mb-6">
-              Have a project in mind or just want to chat? Let's connect!
+              Have a project in mind or just want to chat? Let&apos;s connect!
             </p>
           </div>
 

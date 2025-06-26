@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaSchool, FaUniversity, FaBriefcase, FaCrown, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function JourneyPage() {
   const pathname = usePathname();
@@ -71,34 +72,34 @@ export default function JourneyPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           {/* Left: Logo and Nav */}
           <div className="flex items-center gap-2 sm:gap-8">
-            <a href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
+            <Link href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
               Master.dev
-            </a>
+            </Link>
             <nav className="flex flex-wrap items-center gap-2 sm:gap-8 text-xs uppercase font-medium">
-              <a
+              <Link
                 href="/"
                 className={`transition-colors px-1 py-1 rounded-md ${
                   pathname === '/' ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
                 } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/project"
                 className={`transition-colors px-1 py-1 rounded-md ${
                   pathname.startsWith('/project') ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
                 } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
               >
                 Projects
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/journey"
                 className={`transition-colors px-1 py-1 rounded-md ${
                   pathname.startsWith('/journey') ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
                 } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
               >
                 Journey
-              </a>
+              </Link>
             </nav>
           </div>
           {/* Social Icons */}
