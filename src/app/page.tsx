@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from 'next/dynamic';
 
 import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
+
+const SplineAvatar = dynamic(() => import('./SplineAvatar'), { ssr: false });
 
 // Helper to get current anchor link for active state styling
 function useActiveSection() {
@@ -69,7 +72,7 @@ export default function Home() {
   }, []);
 
   // Typewriter effect for about/intro text
-  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I&apos;m currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full-stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what&apos;s possible with AI technology.";
+  const aboutText = "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems. Passionate about crafting full-stack applications with clean code and exceptional user experiences. From responsive frontends to scalable backends, I love building solutions that make a difference. Exploring the fascinating world of Generative AI and machine learning. Building innovative applications that push the boundaries of what's possible with AI technology.";
   const [typedAbout, setTypedAbout] = useState("");
   useEffect(() => {
     let i = 0;
@@ -83,6 +86,11 @@ export default function Home() {
       }
     }, 60);
     return () => clearInterval(interval);
+  }, []);
+
+  const [year, setYear] = useState<number | null>(null);
+  useEffect(() => {
+    setYear(new Date().getFullYear());
   }, []);
 
   return (
@@ -155,15 +163,7 @@ export default function Home() {
         {/* Left: Avatar and Intro */}
         <div className="flex-1 flex flex-col items-start justify-center w-full min-w-0">
           {/* Avatar */}
-          <div className="mb-6 sm:mb-8 w-32 sm:w-40 h-32 sm:h-40 rounded-full overflow-hidden border-4 border-blue-500 shadow-[0_0_40px_#3b82f6] mx-auto md:mx-0">
-            <Image
-              src="/Mr3W.gif"
-              alt="Animated Globe GIF"
-              width={160}
-              height={160}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <SplineAvatar />
           {/* Headline */}
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
             Hey, I&apos;m <span className="text-blue-300">Prince </span>
@@ -519,7 +519,7 @@ export default function Home() {
       <footer className="bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-6">
           <div className="flex items-center gap-2">
-            <span className="text-gray-400">© {new Date().getFullYear()} Prince. All rights reserved.</span>
+            <span className="text-gray-400">© {year ?? ''} Prince. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
             <Link href="https://github.com/Mprince29" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
@@ -537,4 +537,12 @@ export default function Home() {
 
     </main>
   );
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'spline-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { url: string };
+    }
+  }
 }
