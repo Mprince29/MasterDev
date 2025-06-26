@@ -1,0 +1,5 @@
+# This is a Node.js/Next.js project
+# Python requirements are not needed for this project
+# This file exists to satisfy deployment platform requirements
+
+# No Python dependencies required 
