@@ -33,7 +33,7 @@ export default function Home() {
 
   // Animated line-by-line about section
   const aboutLines = [
-    "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems.",
+    "Graduated with B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems.",
     "Passionate about crafting full-stack applications with clean code and exceptional user experiences.",
     "From responsive frontends to scalable backends, I love building solutions that make a difference.",
     "Exploring the fascinating world of Generative AI and machine learning.",
