@@ -24,3 +24,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes glowPulse {
+  0% {
+    border-color: #3b82f6;
+    box-shadow: 0 0 12px 2px #3b82f688;
+  }
+  50% {
+    border-color: #fff;
+    box-shadow: 0 0 20px 4px #ffffff55;
+  }
+  100% {
+    border-color: #3b82f6;
+    box-shadow: 0 0 12px 2px #3b82f688;
+  }
+}
+
+.animated-glow {
+  animation: glowPulse 3s ease-in-out infinite;
+  border-width: 2px;
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradient-move 4s linear infinite;
+}

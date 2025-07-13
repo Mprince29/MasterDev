@@ -1,39 +1,34 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
+import { GridAndDotBackground } from "@/components/ui/grid-and-dot-background";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { FloatingSidebars } from "@/components/ui/floating-sidebars";
 
 import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
+import SocialCard from "@/components/ui/social-card";
+import { FaReact, FaGitAlt, FaNodeJs, FaPython } from "react-icons/fa";
+import { SiTailwindcss, SiVisualstudiocode } from "react-icons/si";
+import { FaHtml5 as FaHtml5Icon, FaCss3Alt } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiJavascript, SiFlask, SiFastapi, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiTensorflow, SiPytorch, SiPandas, SiNumpy, SiVercel, SiNetlify } from "react-icons/si";
+import { FeatureBlockCard } from "@/components/ui/feature-block-card";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 
 const SplineAvatar = dynamic(() => import('./SplineAvatar'), { ssr: false });
 
-// Helper to get current anchor link for active state styling
-function useActiveSection() {
-  const [hasScrolled, setHasScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setHasScrolled(scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return { hasScrolled };
-}
 
 export default function Home() {
-  const pathname = usePathname();
-  const { hasScrolled } = useActiveSection();
+
+
 
   // Animated line-by-line about section
   const aboutLines = [
-    "Graduated with B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems.",
+    "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems.",
     "Passionate about crafting full-stack applications with clean code and exceptional user experiences.",
     "From responsive frontends to scalable backends, I love building solutions that make a difference.",
     "Exploring the fascinating world of Generative AI and machine learning.",
@@ -77,14 +72,17 @@ export default function Home() {
   const projectCardVariants = {
     hiddenLeft: { opacity: 0, x: -80 },
     hiddenRight: { opacity: 0, x: 80 },
-    visible: { opacity: 1, x: 0 }
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1.5,
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
+      }
+    }
   };
 
-  // Contact icon drop animation
-  const contactIconVariants = {
-    hidden: { opacity: 0, y: -60, scale: 1.2 },
-    visible: { opacity: 1, y: 0, scale: 1 }
-  };
+
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -101,72 +99,48 @@ export default function Home() {
     setYear(new Date().getFullYear());
   }, []);
 
+
+
   return (
-    <main className="relative z-10 min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        hasScrolled ? 'backdrop-blur-md bg-black/80' : ''
-      }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          {/* Left: Logo and Nav */}
-          <div className="flex items-center gap-2 sm:gap-8">
-            <Link href="/" className="text-lg font-bold text-blue-400 tracking-tight flex-shrink-0">
-              Master.dev
-            </Link>
-            <nav className="flex flex-wrap items-center gap-2 sm:gap-8 text-xs uppercase font-medium">
-              <Link
-                href="/"
-                className={`transition-colors px-1 py-1 rounded-md ${
-                  pathname === '/' ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
-                } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
-              >
-                Home
-              </Link>
-              <Link
-                href="/project"
-                className={`transition-colors px-1 py-1 rounded-md ${
-                  pathname.startsWith('/project') ? 'text-white bg-blue-900/40 shadow' : 'text-gray-300'
-                } hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow`}
-              >
-                Projects
-              </Link>
-              <Link
-                href="#contact"
-                className="transition-colors px-1 py-1 rounded-md text-gray-300 hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/journey"
-                className="transition-colors px-1 py-1 rounded-md text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-white hover:text-white hover:shadow"
-              >
-                Journey
-              </Link>
-            </nav>
-          </div>
-          {/* Social Icons */}
-          <div className="flex items-center gap-2 sm:gap-3 ml-2 sm:ml-6">
-            <Link href="https://github.com/Mprince29" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <FaGithub className="w-5 h-5 text-gray-300 hover:text-blue-400 transition-colors" />
-            </Link>
-            <Link href="https://www.linkedin.com/in/master-prince-83609b257/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <FaLinkedin className="w-5 h-5 text-gray-300 hover:text-blue-400 transition-colors" />
-            </Link>
-            <Link href="mailto:prince28.01.2022@email.com" aria-label="Email">
-              <FaEnvelope className="w-5 h-5 text-gray-300 hover:text-blue-400 transition-colors" />
-            </Link>
-          </div>
-        </div>
-      </header>
+    <main className="relative min-h-screen text-white">
+      <GridAndDotBackground className="fixed inset-0 -z-10" variant="grid" />
+      
+      {/* Floating Navbar */}
+      <FloatingNav
+        navItems={[
+          {
+            name: "Home",
+            link: "/",
+          },
+          {
+            name: "Projects",
+            link: "/project",
+          },
+          {
+            name: "Blog",
+            link: "/blog",
+          },
+          {
+            name: "Journey",
+            link: "/journey",
+          },
+        ]}
+      />
+
+      {/* Floating Sidebars */}
+      <FloatingSidebars />
+
+      {/* Tracing Beam Effect */}
+      <TracingBeam className="fixed left-4 top-0 h-full w-20 z-50 pointer-events-none hidden sm:block" />
 
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ amount: 0.3 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
         id="home"
-        className="pt-32 px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between min-h-[calc(100vh-6rem)] text-left max-w-6xl mx-auto"
+        className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between min-h-[calc(100vh-6rem)] text-left max-w-6xl mx-auto"
       >
         {/* Left: Avatar and Intro */}
         <div className="flex-1 flex flex-col items-start justify-center w-full min-w-0">
@@ -176,21 +150,18 @@ export default function Home() {
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
             Hey, I&apos;m <span className="text-blue-300">Prince </span>
           </h1>
-          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 sm:mb-9 text-white-200">
-             Developer 
-          </h2>
           <div className="flex flex-col space-y-6 sm:space-y-8 w-full max-w-6xl">
             {/* Animated About Intro, line by line with slide-in animation */}
-            <div className="text-base sm:text-lg text-gray-400 w-full max-w-6xl min-h-[3.5rem] px-2 sm:px-6 md:px-16 lg:px-24 xl:px-32 text-left">
-              {aboutLines.slice(0, visibleLines).map((line: string, idx: number) => (
+            <div className="text-base sm:text-lg text-gray-400 w-full max-w-6xl min-h-[3.5rem] px-2 sm:px-4 md:px-8 lg:px-12 xl:px-16 text-left">
+              {aboutLines.slice(0, visibleLines).map((line: string | { text: string; bold: boolean }, idx: number) => (
                 <motion.p
                   key={idx}
                   initial={{ opacity: 0, x: 60 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="mb-1"
+                  className={`mb-1 ${typeof line === 'object' && line.bold ? 'font-bold text-white' : ''}`}
                 >
-                  {line}
+                  {typeof line === 'string' ? line : line.text}
                 </motion.p>
               ))}
             </div>
@@ -198,168 +169,119 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Tools I Use Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
-        id="tools"
-        className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24"
+      {/* Section Divider */}
+      <div className="w-full py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-px bg-gray-600/80"></div>
+        </div>
+      </div>
+
+      {/* Tools I Use Section (Aceternity UI animated style) */}
+      <motion.section 
+        className="py-20 px-4 sm:px-6 lg:px-8"
+        initial={{ opacity: 0, rotateX: -15, y: 50 }}
+        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+        viewport={{ amount: 0.3 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        style={{ perspective: 1000 }}
       >
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-2xl sm:text-3xl md:text-5xl inline-block w-full font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text"
-          >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text text-left">
             Tools I Use
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-400 mb-8 sm:mb-12 max-w-2xl"
-          >
+          </h2>
+          <p className="text-gray-400 mb-8 sm:mb-12 max-w-2xl text-left">
             Here&apos;s a list of technologies, tools, and frameworks I&apos;ve worked with across different domains.
-          </motion.p>
-
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
-            {/* Frontend */}
-            <motion.div variants={itemVariants} transition={{ duration: 0.7, ease: 'easeOut' }} className="rounded-2xl p-8 shadow-lg bg-black">
-              <h3 className="text-xl font-bold text-white mb-6">Frontend</h3>
-              <div className="flex flex-wrap gap-8">
-                {[
-                  { name: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-                  { name: "Next.js", src:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-                  { name: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-                  { name: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-                  { name: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-                  
-                  
-                  
-                ].map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    className="flex flex-col items-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
-                    <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
-                  </motion.div>
-                ))}
-              </div>
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch max-w-6xl mx-auto">
+          {[
+            {
+              title: "Frontend",
+              tools: [
+                { name: "React", icon: <FaReact />, color: "#61DAFB" },
+                { name: "Next.js", icon: <SiNextdotjs />, color: "#000" },
+                { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6" },
+                { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E" },
+                { name: "Vue.js", icon: <SiVisualstudiocode />, color: "#4FC08D" },
+              ],
+            },
+            {
+              title: "Backend",
+              tools: [
+                { name: "Python", icon: <FaPython />, color: "#3776AB" },
+                { name: "Flask", icon: <SiFlask />, color: "#000" },
+                { name: "Node.js", icon: <FaNodeJs />, color: "#339933" },
+                { name: "FastAPI", icon: <SiFastapi />, color: "#009688" },
+                { name: "Express", icon: <SiExpress />, color: "#000" },
+              ],
+            },
+            {
+              title: "Machine Learning",
+              tools: [
+                { name: "TensorFlow", icon: <SiTensorflow />, color: "#FF6F00" },
+                { name: "PyTorch", icon: <SiPytorch />, color: "#EE4C2C" },
+                { name: "Pandas", icon: <SiPandas />, color: "#150458" },
+                { name: "NumPy", icon: <SiNumpy />, color: "#013243" },
+                { name: "Scikit", icon: <FaPython />, color: "#F7931E" },
+              ],
+            },
+            {
+              title: "Databases",
+              tools: [
+                { name: "MySQL", icon: <SiMysql />, color: "#4479A1" },
+                { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
+                { name: "PostgreSQL", icon: <SiPostgresql />, color: "#336791" },
+              ],
+            },
+            {
+              title: "Deployment",
+              tools: [
+                { name: "Git", icon: <FaGitAlt />, color: "#F05032" },
+                { name: "GitHub", icon: <FaGithub />, color: "#181717" },
+                { name: "Vercel", icon: <SiVercel />, color: "#000" },
+                { name: "Netlify", icon: <SiNetlify />, color: "#00C7B7" },
+              ],
+            },
+            {
+              title: "Designing",
+              tools: [
+                { name: "HTML5", icon: <FaHtml5Icon />, color: "#E34F26" },
+                { name: "CSS", icon: <FaCss3Alt />, color: "#1572B6" },
+                { name: "Tailwind", icon: <SiTailwindcss />, color: "#06B6D4" },
+              ],
+            },
+          ].map((cat, idx) => (
+            <motion.div
+              key={cat.title}
+              variants={projectCardVariants}
+              initial={idx % 2 === 0 ? "hiddenLeft" : "hiddenRight"}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <FeatureBlockCard
+                title={cat.title}
+                tools={cat.tools}
+              />
             </motion.div>
-
-            {/* Backend */}
-            <motion.div variants={itemVariants} transition={{ duration: 0.7, ease: 'easeOut' }} className="rounded-2xl p-8 shadow-lg bg-black">
-              <h3 className="text-xl font-bold text-white mb-6">Backend</h3>
-              <div className="flex flex-wrap gap-8">
-                {[
-                  { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-                  { name: "Flask", src:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"},
-                  { name: "Node.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-                  { name: "FastAPI", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-                  { name: "Express", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-                  
-                  
-                ].map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    className="flex flex-col items-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
-                    <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Databases */}
-            <motion.div variants={itemVariants} transition={{ duration: 0.7, ease: 'easeOut' }} className="rounded-2xl p-8 shadow-lg bg-black">
-              <h3 className="text-xl font-bold text-white mb-6">Databases</h3>
-              <div className="flex flex-wrap gap-8">
-                {[
-                  { name: "MySQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-                  { name: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-                  { name: "PostgreSQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" }
-                ].map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    className="flex flex-col items-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
-                    <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Machine Learning */}
-            <motion.div variants={itemVariants} transition={{ duration: 0.7, ease: 'easeOut' }} className="rounded-2xl p-8 shadow-lg bg-black">
-              <h3 className="text-xl font-bold text-white mb-6">Machine Learning</h3>
-              <div className="flex flex-wrap gap-8">
-                {[
-                  { name: "TensorFlow", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
-                  { name: "PyTorch", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
-                  { name: "Pandas", src: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" },
-                  { name: "NumPy", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" }
-                  
-                  
-                ].map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    className="flex flex-col items-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
-                    <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Design */}
-            <motion.div variants={itemVariants} transition={{ duration: 0.7, ease: 'easeOut' }} className="rounded-2xl p-8 shadow-lg bg-black">
-              <h3 className="text-xl font-bold text-white mb-6">Deployment Tools</h3>
-              <div className="flex flex-wrap gap-8">
-                {[
-                  { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-                  { name: "Vercel", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
-                  { name: "Netlify", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" },
-                ].map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    className="flex flex-col items-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Image src={tool.src} alt={tool.name} width={48} height={48} className="w-12 h-12" />
-                    <span className="mt-2 text-sm text-gray-300">{tool.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          ))}
+        </div>
       </motion.section>
 
+      {/* Section Divider */}
+      <div className="w-full py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-px bg-gray-800/80"></div>
+        </div>
+      </div>
 
       {/* Projects Showcase Section */}
       <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
-        className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24"
+        initial={{ opacity: 0, rotateX: -15, y: 50 }}
+        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+        viewport={{ amount: 0.3 }}
+        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28"
+        style={{ perspective: 1000 }}
       >
         <motion.div
           variants={containerVariants}
@@ -367,10 +289,10 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-5xl inline-block w-full font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
+          <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text text-left">
             Featured Projects
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-gray-400 mb-8 sm:mb-12 max-w-2xl">
+          <motion.p variants={itemVariants} className="text-gray-400 mb-8 sm:mb-12 max-w-2xl text-left">
             Here are some of my recent works that showcase my skills and expertise.
           </motion.p>
           
@@ -397,49 +319,89 @@ export default function Home() {
                 image: "/1project.png",
                 link: "https://github.com/Mprince29/Medical_Report_generator.git",
               },
-            ].map((project, index) => (
-              <motion.a
-                key={index}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={projectCardVariants}
-                initial={index % 2 === 0 ? "hiddenLeft" : "hiddenRight"}
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: index * 0.18 }}
-                className="group flex flex-col rounded-2xl bg-black shadow-lg hover:shadow-blue-500/20 transition-all duration-300 overflow-hidden h-full"
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-full h-56 bg-gray-900 flex items-center justify-center overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={400}
-                    height={224}
-                    className="h-full w-full object-cover rounded-t-2xl transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-col flex-1 p-6">
-                  <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
-                  <p className="text-gray-300 mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex-1" />
-                  <span className="inline-block text-sm font-medium text-blue-500 hover:underline bg-gray-900/60 rounded px-3 py-1 self-end mt-auto">
-                    View Project →
-                  </span>
-                </div>
-              </motion.a>
-            ))}
+            ].map((project, index) => {
+              // Use a simple approach without refs for now
+              const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+                const target = e.currentTarget;
+                const rect = target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                target.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+              };
+
+              const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+                e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+              };
+              
+              return (
+                <motion.div
+                  key={index}
+                  variants={projectCardVariants}
+                  initial={index % 2 === 0 ? "hiddenLeft" : "hiddenRight"}
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="cursor-pointer"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                <BackgroundGradient className="h-full">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col h-full w-full items-center justify-between"
+                  >
+                    <div className="w-full flex items-center justify-center pt-2">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={220}
+                        height={120}
+                        className="object-contain max-h-40 drop-shadow-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="flex flex-col w-full items-center text-center flex-1 mt-4">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 group-hover:text-[#dbeafe] transition-colors duration-300 ease-in-out">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400 mb-6 text-sm sm:text-base leading-relaxed max-w-xs">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6 justify-center">
+                        {project.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 rounded-full bg-[#dbeafe1a] text-[#dbeafe] text-xs font-medium border border-[#a5b4fc] transition-all duration-300 ease-in-out"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex justify-center w-full">
+                        <button
+                          className="flex items-center gap-2 bg-[#232328] text-white font-semibold rounded-full px-6 py-2 shadow-inner border border-[#a5b4fc] hover:bg-[#dbeafe1a] hover:border-[#dbeafe] transition-all duration-300 ease-in-out text-base"
+                          type="button"
+                        >
+                          View Project
+                          <span className="ml-2 bg-[#232328] text-xs font-bold rounded-full px-2 py-1 border border-[#a5b4fc] text-[#dbeafe] transition-all duration-300 ease-in-out">
+                            GitHub
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </a>
+                </BackgroundGradient>
+              </motion.div>
+                );
+              })}
           </div>
           <div className="flex justify-end items-center pt-6 sm:pt-9">
             <Link
@@ -452,88 +414,77 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
+      {/* Section Divider */}
+      <div className="w-full py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-px bg-gray-800/80"></div>
+        </div>
+      </div>
+
       {/* Contact Section */}
       <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
+        initial={{ opacity: 0, rotateX: -15, y: 50 }}
+        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+        viewport={{ amount: 0.3 }}
+        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
         id="contact"
-        className="relative overflow-hidden"
+        className="relative overflow-hidden py-20"
+        style={{ perspective: 1000 }}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 flex flex-col md:flex-row gap-8 md:gap-12">
-          {/* Left side - Text */}
-          <div className="flex-1 relative z-10">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
-              Bringing your ideas to life.
-            </h2>
-            <h3 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
-              Let&apos;s turn your vision into reality
-            </h3>
-            <p className="text-gray-400 text-lg mb-6">
-              Have a project in mind or just want to chat? Let&apos;s connect!
-            </p>
-          </div>
-
-          {/* Right side - Social Media Icons */}
-          <div className="flex-1 relative z-10">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-8">
-              {[
-                {
-                  href: "https://www.linkedin.com/in/master-prince-83609b257/",
-                  icon: <FaLinkedin className="w-12 h-12 group-hover:scale-110 transition-transform duration-200" />, label: "LinkedIn"
-                },
-                {
-                  href: "https://x.com/Mprince_28",
-                  icon: <FaTwitter className="w-12 h-12 group-hover:scale-110 transition-transform duration-200" />, label: "X"
-                },
-                {
-                  href: "https://instagram.com/m_princeee29",
-                  icon: <FaInstagram className="w-12 h-12 group-hover:scale-110 transition-transform duration-200" />, label: "Instagram"
-                },
-                {
-                  href: "https://github.com/Mprince29",
-                  icon: <FaGithub className="w-12 h-12 group-hover:scale-110 transition-transform duration-200" />, label: "GitHub"
-                },
-                {
-                  href: "mailto:prince28.01.2022@email.com",
-                  icon: <FaEnvelope className="w-12 h-12 group-hover:scale-110 transition-transform duration-200" />, label: "Email"
-                }
-              ].map((item, idx) => (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex flex-col items-center text-center hover:text-blue-400 transition-colors group"
-                  variants={contactIconVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: idx * 0.13 }}
-                >
-                  <span className="w-16 h-16 mb-1 flex items-center justify-center rounded-xl backdrop-blur-sm bg-black/20">
-                    {item.icon}
-                  </span>
-                  <span className="text-sm mt-2 text-gray-300 group-hover:text-blue-400 transition-colors">{item.label}</span>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-              backgroundSize: '24px 24px',
-              opacity: 0.5
-            }} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-32">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text text-left">
+            Connect With Me
+          </h2>
+          <p className="text-gray-400 text-lg mb-8 max-w-2xl text-left">
+            Have a project in mind or just want to chat? Let&apos;s connect!
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 lg:gap-8 w-full max-w-5xl">
+            <SocialCard
+              platform="GitHub"
+              profileUrl="https://github.com/Mprince29"
+              imageUrl="https://github.com/Mprince29.png"
+              name="Prince"
+              handle="@Mprince29"
+              icon={<FaGithub className="w-8 h-8" />}
+            />
+            <SocialCard
+              platform="LinkedIn"
+              profileUrl="https://www.linkedin.com/in/master-prince-83609b257/"
+              imageUrl="https://ui-avatars.com/api/?name=Prince+LinkedIn&background=0A66C2&color=fff"
+              name="Prince"
+              handle="@master-prince-83609b257"
+              icon={<FaLinkedin className="w-8 h-8" />}
+            />
+            <SocialCard
+              platform="X (Twitter)"
+              profileUrl="https://x.com/Mprince_28"
+              imageUrl="https://ui-avatars.com/api/?name=Prince+Twitter&background=1DA1F2&color=fff"
+              name="Prince"
+              handle="@Mprince_28"
+              icon={<FaTwitter className="w-8 h-8" />}
+            />
+            <SocialCard
+              platform="Instagram"
+              profileUrl="https://instagram.com/m_princeee29"
+              imageUrl="https://ui-avatars.com/api/?name=Prince+Instagram&background=E1306C&color=fff"
+              name="Prince"
+              handle="@m_princeee29"
+              icon={<FaInstagram className="w-8 h-8" />}
+            />
+            <SocialCard
+              platform="Email"
+              profileUrl="mailto:prince28.01.2022@email.com"
+              imageUrl="https://ui-avatars.com/api/?name=Prince&background=0D8ABC&color=fff"
+              name="Prince"
+              handle="prince28.01.2022@email.com"
+              icon={<FaEnvelope className="w-8 h-8" />}
+            />
           </div>
         </div>
       </motion.section>
 
       {/* Footer */}
-      <footer className="bg-black">
+      <footer className="bg-black/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-6">
           <div className="flex items-center gap-2">
             <span className="text-gray-400">© {year ?? ''} Prince. All rights reserved.</span>
@@ -551,7 +502,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
     </main>
   );
 }
