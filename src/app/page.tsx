@@ -177,7 +177,7 @@ export default function Home() {
           <div style={{ width: 580, overflow: 'hidden', borderRadius: 16, marginBottom: 12 }}>
             <video
               id="waveVideo"
-              src="/Video.mp4"
+              src="/video.mp4"
               muted
               preload="auto"
               playsInline
