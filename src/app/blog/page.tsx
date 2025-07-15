@@ -24,6 +24,28 @@ export default function Blog() {
     return () => clearInterval(interval);
   }, [icons.length]);
 
+  // Add state for floating elements' random positions and transitions
+  const [floatingElements, setFloatingElements] = useState<{
+    x: number;
+    y: number;
+    left: string;
+    top: string;
+    duration: number;
+  }[]>([]);
+
+  useEffect(() => {
+    // Only run on client
+    const elements = Array.from({ length: 6 }, () => {
+      const x = Math.random() * 100 - 50;
+      const y = Math.random() * 100 - 50;
+      const left = `${20 + Math.random() * 60}%`;
+      const top = `${20 + Math.random() * 60}%`;
+      const duration = 20 + Math.random() * 10;
+      return { x, y, left, top, duration };
+    });
+    setFloatingElements(elements);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -231,23 +253,23 @@ export default function Blog() {
             transition={{ delay: 1.5, duration: 1 }}
             className="absolute inset-0 pointer-events-none"
           >
-            {[...Array(6)].map((_, i) => (
+            {floatingElements.length === 0 ? null : floatingElements.map((el, i) => (
               <motion.div
                 key={i}
                 animate={{
-                  x: [0, Math.random() * 100 - 50],
-                  y: [0, Math.random() * 100 - 50],
+                  x: [0, el.x],
+                  y: [0, el.y],
                   rotate: [0, 360]
                 }}
                 transition={{
-                  duration: 20 + Math.random() * 10,
+                  duration: el.duration,
                   repeat: Infinity,
                   ease: "linear"
                 }}
                 className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
                 style={{
-                  left: `${20 + Math.random() * 60}%`,
-                  top: `${20 + Math.random() * 60}%`
+                  left: el.left,
+                  top: el.top
                 }}
               />
             ))}

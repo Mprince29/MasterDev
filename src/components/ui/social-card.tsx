@@ -11,6 +11,8 @@ interface SocialCardProps {
   name: string;
   handle: string;
   icon: React.ReactNode;
+  index?: number;
+  isMobile?: boolean;
 }
 
 export default function SocialCard({
@@ -20,6 +22,8 @@ export default function SocialCard({
   name,
   handle,
   icon,
+  index,
+  isMobile,
 }: SocialCardProps) {
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -36,6 +40,27 @@ export default function SocialCard({
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
+  if (isMobile) {
+    // Inline card for mobile, no profile photo
+    return (
+      <div className="animated-glow w-full flex flex-row items-center gap-2 rounded-2xl bg-white/15 backdrop-blur-xl p-2 text-white shadow-2xl border border-white/20">
+        <span className="w-8 h-8 flex items-center justify-center text-xl">{icon}</span>
+        <div className="flex flex-col justify-center">
+          <h4 className="text-base font-bold leading-tight whitespace-nowrap">{name}</h4>
+          <a
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-blue-300 hover:text-blue-200 transition-colors duration-200 font-medium whitespace-nowrap"
+          >
+            {handle}
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop: keep popup logic
   return (
     <div ref={rootRef} className="relative w-full flex flex-col items-center">
       {/* Clickable icon or button */}
@@ -85,9 +110,28 @@ export default function SocialCard({
               stiffness: 300,
               damping: 25
             }}
-            className="animated-glow absolute left-1/2 top-full mt-4 w-[280px] sm:w-[350px] -translate-x-1/2 rounded-2xl bg-white/15 backdrop-blur-xl p-4 sm:p-6 text-white shadow-2xl z-10 border border-white/20"
+            className={
+              `animated-glow absolute top-full mt-4 rounded-2xl bg-white/15 backdrop-blur-xl text-white shadow-2xl z-10 border border-white/20 ` +
+              (isMobile
+                ? 'w-[180px] p-2 flex flex-row items-center gap-2 '
+                : 'w-[350px] p-6 sm:p-6 flex flex-col') +
+              (
+                isMobile
+                  ? (index ?? 0) % 2 === 0
+                    ? ' left-0 -translate-x-0'
+                    : ' right-0 translate-x-0'
+                  : ' left-1/2 -translate-x-1/2'
+              )
+            }
+            style={
+              isMobile
+                ? (index ?? 0) % 2 === 0
+                  ? { right: 'auto', left: 0 }
+                  : { left: 'auto', right: 0 }
+                : { left: '50%', transform: 'translateX(-50%)' }
+            }
           >
-                          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-4 sm:gap-6">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}

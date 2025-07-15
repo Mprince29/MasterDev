@@ -4,8 +4,9 @@ const nextConfig = {
     domains: [
       "github.com",
       "media.licdn.com",
-      "abs.twimg.com",
+      "x.com",
       "instagram.fdel27-2.fna.fbcdn.net",
+      "lh3.googleusercontent.com",
       "ui-avatars.com"
     ],
   },

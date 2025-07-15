@@ -85,10 +85,10 @@ export function Timeline({ items, className }: TimelineProps) {
                       {item.title}
                     </h2>
                     
-                    <div className="flex items-center gap-2 text-gray-200 font-semibold font-[Poppins,Inter,sans-serif]">
-                      <span className="text-lg">{item.subtitle}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-gray-200 font-semibold font-[Poppins,Inter,sans-serif]">
+                      <span className="text-lg whitespace-nowrap">{item.subtitle}</span>
                       {item.date && (
-                        <span className="text-xs text-gray-400 font-normal bg-gray-800/50 px-2 py-1 rounded-full border border-gray-600">
+                        <span className="text-[9px] leading-none text-gray-400 font-normal bg-gray-800/50 px-1 py-0.5 rounded-full border border-gray-600 mt-1 sm:mt-0 w-full sm:w-auto text-center sm:text-left">
                           {item.date}
                         </span>
                       )}

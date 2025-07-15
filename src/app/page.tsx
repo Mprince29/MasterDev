@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
 import { GridAndDotBackground } from "@/components/ui/grid-and-dot-background";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { FloatingSidebars } from "@/components/ui/floating-sidebars";
@@ -18,21 +17,31 @@ import { SiNextdotjs, SiTypescript, SiJavascript, SiFlask, SiFastapi, SiExpress,
 import { FeatureBlockCard } from "@/components/ui/feature-block-card";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 
-const SplineAvatar = dynamic(() => import('./SplineAvatar'), { ssr: false });
 
-
+// Utility hook to detect mobile
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
 
 export default function Home() {
-
+  const isMobile = useIsMobile();
 
 
   // Animated line-by-line about section
   const aboutLines = [
-    "Graduated with a B.Tech in CSE (AI) in 2025, I'm currently working as a Full Stack Developer Intern, bridging the gap between elegant frontend designs and robust backend systems.",
-    "Passionate about crafting full-stack applications with clean code and exceptional user experiences.",
-    "From responsive frontends to scalable backends, I love building solutions that make a difference.",
-    "Exploring the fascinating world of Generative AI and machine learning.",
-    "Building innovative applications that push the boundaries of what's possible with AI technology."
+    "2025 CSE (AI) graduate and a Full Stack Developer.",
+    "I craft seamless applications from elegant frontends to robust backends.",
+    "Passionate about building full-stack solutions with clean code and exceptional user experiences.",
+    "I love creating impactful applications, bridging responsive frontends with scalable backends.",
+    "Exploring Generative AI and machine learning to push the boundaries of innovative AI applications.",
+  
   ];
   const [visibleLines, setVisibleLines] = useState(0);
   useEffect(() => {
@@ -76,7 +85,7 @@ export default function Home() {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 1.5,
+        duration: isMobile ? 0.6 : 1.5,
         ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
       }
     }
@@ -99,6 +108,26 @@ export default function Home() {
     setYear(new Date().getFullYear());
   }, []);
 
+  // Hero video IntersectionObserver logic
+  useEffect(() => {
+    const video = document.getElementById('waveVideo') as HTMLVideoElement | null;
+    if (!video) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.currentTime = 0;
+          video.play();
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.6 }
+    );
+    observer.observe(video);
+    return () => {
+      observer.unobserve(video);
+    };
+  }, []);
 
 
   return (
@@ -144,8 +173,17 @@ export default function Home() {
       >
         {/* Left: Avatar and Intro */}
         <div className="flex-1 flex flex-col items-start justify-center w-full min-w-0">
-          {/* Avatar */}
-          <SplineAvatar />
+          {/* Video placed above headline, cropped from right */}
+          <div style={{ width: 580, overflow: 'hidden', borderRadius: 16, marginBottom: 12 }}>
+            <video
+              id="waveVideo"
+              src="/Video.mp4"
+              muted
+              preload="auto"
+              playsInline
+              style={{ width: 520, height: 'auto', display: 'block', borderRadius: 16, marginLeft: 0 }}
+            />
+          </div>
           {/* Headline */}
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
             Hey, I&apos;m <span className="text-blue-300">Prince </span>
@@ -279,7 +317,7 @@ export default function Home() {
         initial={{ opacity: 0, rotateX: -15, y: 50 }}
         whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
         viewport={{ amount: 0.3 }}
-        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+        transition={{ duration: 0.8, ease: 'easeOut', ...(isMobile ? {} : { delay: 0.2 }) }}
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28"
         style={{ perspective: 1000 }}
       >
@@ -439,46 +477,61 @@ export default function Home() {
             Have a project in mind or just want to chat? Let&apos;s connect!
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 lg:gap-8 w-full max-w-5xl">
-            <SocialCard
-              platform="GitHub"
-              profileUrl="https://github.com/Mprince29"
-              imageUrl="https://github.com/Mprince29.png"
-              name="Prince"
-              handle="@Mprince29"
-              icon={<FaGithub className="w-8 h-8" />}
-            />
-            <SocialCard
-              platform="LinkedIn"
-              profileUrl="https://www.linkedin.com/in/master-prince-83609b257/"
-              imageUrl="https://ui-avatars.com/api/?name=Prince+LinkedIn&background=0A66C2&color=fff"
-              name="Prince"
-              handle="@master-prince-83609b257"
-              icon={<FaLinkedin className="w-8 h-8" />}
-            />
-            <SocialCard
-              platform="X (Twitter)"
-              profileUrl="https://x.com/Mprince_28"
-              imageUrl="https://ui-avatars.com/api/?name=Prince+Twitter&background=1DA1F2&color=fff"
-              name="Prince"
-              handle="@Mprince_28"
-              icon={<FaTwitter className="w-8 h-8" />}
-            />
-            <SocialCard
-              platform="Instagram"
-              profileUrl="https://instagram.com/m_princeee29"
-              imageUrl="https://ui-avatars.com/api/?name=Prince+Instagram&background=E1306C&color=fff"
-              name="Prince"
-              handle="@m_princeee29"
-              icon={<FaInstagram className="w-8 h-8" />}
-            />
-            <SocialCard
-              platform="Email"
-              profileUrl="mailto:prince28.01.2022@email.com"
-              imageUrl="https://ui-avatars.com/api/?name=Prince&background=0D8ABC&color=fff"
-              name="Prince"
-              handle="prince28.01.2022@email.com"
-              icon={<FaEnvelope className="w-8 h-8" />}
-            />
+            {[
+              {
+                platform: "GitHub",
+                profileUrl: "https://github.com/Mprince29",
+                imageUrl: "https://github.com/Mprince29.png",
+                name: "Prince",
+                handle: "@Mprince29",
+                icon: <FaGithub className="w-8 h-8" />,
+              },
+              {
+                platform: "LinkedIn",
+                profileUrl: "https://www.linkedin.com/in/master-prince-83609b257/",
+                imageUrl: "https://media.licdn.com/dms/image/v2/D5603AQGwP94ZQczOvw/profile-displayphoto-shrink_400_400/B56Zcq4P_2HUAg-/0/1748771079497?e=1758153600&v=beta&t=FMZtbsQjyMM6YIsAczTzhybdViMP_swWFOFl2PMAUzk",
+                name: "Prince",
+                handle: "@master-prince-83609b257",
+                icon: <FaLinkedin className="w-8 h-8" />, 
+              },
+              {
+                platform: "X (Twitter)",
+                profileUrl: "https://x.com/Mprince_28",
+                imageUrl: "https://x.com/Mprince_28/photo",
+                name: "Prince",
+                handle: "@Mprince_28",
+                icon: <FaTwitter className="w-8 h-8" />,
+              },
+              {
+                platform: "Instagram",
+                profileUrl: "https://instagram.com/m_princeee29",
+                imageUrl: "https://ui-avatars.com/api/?name=Prince+Instagram&background=E1306C&color=fff",
+                name: "Prince",
+                handle: "@m_princeee29",
+                icon: <FaInstagram className="w-8 h-8" />,
+              },
+              {
+                platform: "Email",
+                profileUrl: "mailto:prince28.01.2022@email.com",
+                imageUrl: "https://lh3.googleusercontent.com/a/ACg8ocJTSK9NS6pxzYtmRZyC4qolaa9z5FvsFzqjJxe3hHm2-aU-efJq=s576-c-no",
+                name: "Prince",
+                handle: "prince28.01.2022@email.com",
+                icon: <FaEnvelope className="w-8 h-8" />,
+              },
+            ].map((card, idx) => (
+              isMobile ? (
+                <motion.div
+                  key={card.platform}
+                  initial={{ opacity: 0, x: idx % 2 === 0 ? -60 : 60 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                  <SocialCard {...card} index={idx} isMobile={isMobile} />
+                </motion.div>
+              ) : (
+                <SocialCard key={card.platform} {...card} index={idx} isMobile={isMobile} />
+              )
+            ))}
           </div>
         </div>
       </motion.section>
