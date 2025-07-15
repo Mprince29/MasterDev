@@ -186,7 +186,11 @@ export default function Home() {
             />
           </div>
           {/* Headline */}
-          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text">
+          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight 
+  bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text
+  sm:bg-gradient-to-r sm:from-blue-400 sm:via-blue-200 sm:to-white sm:text-transparent sm:bg-clip-text
+  text-white
+">
             Hey, I&apos;m <span className="text-blue-300">Prince </span>
           </h1>
           <div className="flex flex-col space-y-4 sm:space-y-6 w-full max-w-2xl">
