@@ -129,6 +129,62 @@ export default function Home() {
     };
   }, []);
 
+  // Animation state for tile rotation
+  const [tileRotations, setTileRotations] = React.useState([
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+  ]);
+  React.useEffect(() => {
+    let frame = 0;
+    let rafId: number;
+    const animate = () => {
+      frame++;
+      setTileRotations([
+        {
+          x: Math.sin((frame + 0) * 0.03) * 6,
+          y: Math.cos((frame + 0) * 0.03) * 6,
+        },
+        {
+          x: Math.sin((frame + 40) * 0.03) * 6,
+          y: Math.cos((frame + 40) * 0.03) * 6,
+        },
+        {
+          x: Math.sin((frame + 80) * 0.03) * 6,
+          y: Math.cos((frame + 80) * 0.03) * 6,
+        },
+      ]);
+      rafId = requestAnimationFrame(animate);
+    };
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  // Projects array
+  const projects = [
+    {
+      title: "Intelligent Proctoring Detection Framework",
+      description: "A real-time AI powered invigilation system",
+      tags: ["Javascript", "Flask", "Sql"],
+      image: "/2project.png",
+      link: "https://github.com/Mprince29/Intelligent-Proctoring-Detection-Framework.git",
+    },
+    {
+      title: "Senior Dev AI",
+      description: "AI assistant designed to help new developers and interns",
+      tags: ["Next.js", "FastAPI", "MongoDB"],
+      image: "/3project.png",
+      link: "https://github.com/Mprince29/SeniorDevAI.git",
+    },
+    {
+      title: "Diagnostics Management System",
+      description: "Diagnostics and patient management platform for clinical labs or hospitals.",
+      tags: ["Javascript", "Node.js", "Sql"],
+      image: "/1project.png",
+      link: "https://github.com/Mprince29/Medical_Report_generator.git",
+    },
+  ];
+
 
   return (
     <main className="relative min-h-screen text-white">
@@ -213,7 +269,106 @@ export default function Home() {
           <div className="h-px bg-gray-600/80"></div>
         </div>
       </div>
+      {/* Projects Showcase Section */}
+      <motion.section
+        initial={{ opacity: 0, rotateX: -15, y: 50 }}
+        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+        viewport={{ amount: 0.3 }}
+        transition={{ duration: 0.8, ease: 'easeOut', ...(isMobile ? {} : { delay: 0.2 }) }}
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28"
+        style={{ perspective: 1000 }}
+      >
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text text-left">
+            Featured Projects
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-gray-400 mb-8 sm:mb-12 max-w-2xl text-left">
+            Here are some of my recent works that showcase my skills and expertise.
+          </motion.p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* --- Animated Project Tiles --- */}
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="cursor-pointer"
+                style={{
+                  transform: `perspective(1000px) rotateX(${tileRotations[index]?.x ?? 0}deg) rotateY(${tileRotations[index]?.y ?? 0}deg) scale3d(1.01, 1.01, 1.01)`,
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                <BackgroundGradient className="h-full">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col h-full w-full items-center justify-between"
+                  >
+                    <div className="w-full flex items-center justify-center pt-2">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={220}
+                        height={120}
+                        className="object-contain max-h-40 drop-shadow-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="flex flex-col w-full items-center text-center flex-1 mt-4">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 group-hover:text-[#dbeafe] transition-colors duration-300 ease-in-out">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400 mb-6 text-sm sm:text-base leading-relaxed max-w-xs">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6 justify-center">
+                        {project.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 rounded-full bg-[#dbeafe1a] text-[#dbeafe] text-xs font-medium border border-[#a5b4fc] transition-all duration-300 ease-in-out"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex justify-center w-full">
+                        <button
+                          className="flex items-center gap-2 bg-[#232328] text-white font-semibold rounded-full px-6 py-2 shadow-inner border border-[#a5b4fc] hover:bg-[#dbeafe1a] hover:border-[#dbeafe] transition-all duration-300 ease-in-out text-base"
+                          type="button"
+                        >
+                          View Project
+                          <span className="ml-2 bg-[#232328] text-xs font-bold rounded-full px-2 py-1 border border-[#a5b4fc] text-[#dbeafe] transition-all duration-300 ease-in-out">
+                            GitHub
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </a>
+                </BackgroundGradient>
+              </motion.div>
+            ))}
+          </div>
+          <div className="flex justify-end items-center pt-6 sm:pt-9">
+            <Link
+              href="/project"
+              className="bg-gradient-to-r from-blue-500 to-white hover:from-blue-600 hover:to-white text-blue-900 font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm sm:text-base"
+            >
+              View My Work
+            </Link>
+          </div>
+        </motion.div>
+      </motion.section>
 
+      {/* Section Divider */}
+      <div className="w-full py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-px bg-gray-800/80"></div>
+        </div>
+      </div>
       {/* Tools I Use Section (Aceternity UI animated style) */}
       <motion.section 
         className="py-20 px-4 sm:px-6 lg:px-8"
@@ -305,160 +460,12 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Section Divider */}
-      <div className="w-full py-12">
+            {/* Section Divider */}
+            <div className="w-full py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-px bg-gray-800/80"></div>
         </div>
       </div>
-
-      {/* Projects Showcase Section */}
-      <motion.section
-        initial={{ opacity: 0, rotateX: -15, y: 50 }}
-        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
-        viewport={{ amount: 0.3 }}
-        transition={{ duration: 0.8, ease: 'easeOut', ...(isMobile ? {} : { delay: 0.2 }) }}
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28"
-        style={{ perspective: 1000 }}
-      >
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-blue-200 to-white text-transparent bg-clip-text text-left">
-            Featured Projects
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-gray-400 mb-8 sm:mb-12 max-w-2xl text-left">
-            Here are some of my recent works that showcase my skills and expertise.
-          </motion.p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                title: "Intelligent Proctoring Detection Framework",
-                description: "A real-time AI powered invigilation system",
-                tags: ["Javascript", "Flask", "Sql"],
-                image: "/2project.png",
-                link: "https://github.com/Mprince29/Intelligent-Proctoring-Detection-Framework.git",
-              },
-              {
-                title: "Senior Dev AI",
-                description: "AI assistant designed to help new developers and interns",
-                tags: ["Next.js", "FastAPI", "MongoDB"],
-                image: "/3project.png",
-                link: "https://github.com/Mprince29/SeniorDevAI.git",
-              },
-              {
-                title: "Diagnostics Management System",
-                description: "Diagnostics and patient management platform for clinical labs or hospitals.",
-                tags: ["Javascript", "Node.js", "Sql"],
-                image: "/1project.png",
-                link: "https://github.com/Mprince29/Medical_Report_generator.git",
-              },
-            ].map((project, index) => {
-              // Use a simple approach without refs for now
-              const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-                const target = e.currentTarget;
-                const rect = target.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                target.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
-              };
-
-              const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-                e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-              };
-              
-              return (
-                <motion.div
-                  key={index}
-                  variants={projectCardVariants}
-                  initial={index % 2 === 0 ? "hiddenLeft" : "hiddenRight"}
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="cursor-pointer"
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                <BackgroundGradient className="h-full">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col h-full w-full items-center justify-between"
-                  >
-                    <div className="w-full flex items-center justify-center pt-2">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        width={220}
-                        height={120}
-                        className="object-contain max-h-40 drop-shadow-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full items-center text-center flex-1 mt-4">
-                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 group-hover:text-[#dbeafe] transition-colors duration-300 ease-in-out">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-400 mb-6 text-sm sm:text-base leading-relaxed max-w-xs">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                        {project.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1 rounded-full bg-[#dbeafe1a] text-[#dbeafe] text-xs font-medium border border-[#a5b4fc] transition-all duration-300 ease-in-out"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex justify-center w-full">
-                        <button
-                          className="flex items-center gap-2 bg-[#232328] text-white font-semibold rounded-full px-6 py-2 shadow-inner border border-[#a5b4fc] hover:bg-[#dbeafe1a] hover:border-[#dbeafe] transition-all duration-300 ease-in-out text-base"
-                          type="button"
-                        >
-                          View Project
-                          <span className="ml-2 bg-[#232328] text-xs font-bold rounded-full px-2 py-1 border border-[#a5b4fc] text-[#dbeafe] transition-all duration-300 ease-in-out">
-                            GitHub
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </a>
-                </BackgroundGradient>
-              </motion.div>
-                );
-              })}
-          </div>
-          <div className="flex justify-end items-center pt-6 sm:pt-9">
-            <Link
-              href="/project"
-              className="bg-gradient-to-r from-blue-500 to-white hover:from-blue-600 hover:to-white text-blue-900 font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm sm:text-base"
-            >
-              View My Work
-            </Link>
-          </div>
-        </motion.div>
-      </motion.section>
-
-      {/* Section Divider */}
-      <div className="w-full py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-px bg-gray-800/80"></div>
-        </div>
-      </div>
-
       {/* Contact Section */}
       <motion.section
         initial={{ opacity: 0, rotateX: -15, y: 50 }}
