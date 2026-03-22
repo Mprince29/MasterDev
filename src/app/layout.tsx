@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="bg-[rgba(0,0,0,0.85)] text-[#f8f8f2] font-mono antialiased overflow-x-hidden min-h-screen pb-16">
         {/* Global terminal grid background and base layer */}
-        <div className="fixed inset-0 z-[-1] bg-black bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+        <div className="terminal-grid-bg" />
 
         <Navbar />
         <div className="pt-12"> {/* Space for Mac Title Bar */}
