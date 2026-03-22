@@ -1,47 +1,81 @@
-import "./consoleErrorFilter";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata, Viewport } from "next"
+import { JetBrains_Mono } from "next/font/google"
+import "./globals.css"
+import Navbar from "@/components/Navbar"
 
-// Load fonts with custom CSS variables
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
-});
+  variable: "--font-mono",
+  weight: ["400", "500"],
+  display: "swap",
+})
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
-// Define metadata for SEO and browser title
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
-  title: "Prince | Developer Portfolio",
-  description: "The interactive portfolio of Prince – Developer & Product Thinker.",
-};
+  title: "Prince | Full Stack Developer & AI Engineer",
+  description:
+    "Prince is a Full Stack Developer and AI Engineer based in Delhi, building production-ready Applied AI systems, multi-agent workflows, and highly optimized web applications.",
+  keywords: [
+    "Full Stack Developer",
+    "AI Engineer",
+    "AI Developer",
+    "Applied AI Engineer",
+    "Software Developer",
+    "React",
+    "Next.js",
+    "Python",
+    "Machine Learning",
+    "Freelance Web Developer Delhi",
+  ],
+  authors: [{ name: "Prince" }],
+  creator: "Prince",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    title: "Prince | Full Stack Developer & AI Engineer",
+    description:
+      "Prince is a Full Stack Developer and AI Engineer based in Delhi, building production-ready Applied AI systems, multi-agent workflows, and highly optimized web applications.",
+    url: "https://master-dev-pi.vercel.app",
+    siteName: "Prince Portfolio",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Prince | Full Stack Developer & AI Engineer",
+    description: "Building production-grade AI systems and full-stack web applications.",
+  },
+}
 
-// Root layout applied across all pages
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white relative overflow-x-hidden`}
-      >
-        {/* Background radial glow effect */}
-        <div className="pointer-events-none fixed inset-0 -z-10 flex items-center justify-center">
-          <div className="h-[600px] w-[600px] rounded-full bg-blue-500 blur-[200px] opacity-20"></div>
-        </div>
+    <html
+      lang="en"
+      className={`${jetbrains.variable} scroll-smooth bg-[#000000]`}
+    >
+      <body className="bg-[rgba(0,0,0,0.85)] text-[#f8f8f2] font-mono antialiased overflow-x-hidden min-h-screen pb-16">
+        {/* Global terminal grid background and base layer */}
+        <div className="fixed inset-0 z-[-1] bg-black bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
-        {/* Page wrapper */}
-        <div className="min-h-screen flex flex-col">
-          <main className="flex-grow">{children}</main>
-          {/* Optional footer or nav could go here */}
+        <Navbar />
+        <div className="pt-12"> {/* Space for Mac Title Bar */}
+          {children}
         </div>
       </body>
     </html>
-  );
+  )
 }
