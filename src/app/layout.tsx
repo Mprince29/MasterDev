@@ -67,10 +67,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${jetbrains.variable} scroll-smooth bg-[#000000]`}
     >
-      <body className="bg-[rgba(0,0,0,0.85)] text-[#f8f8f2] font-mono antialiased overflow-x-hidden min-h-screen pb-16">
+      <body className="text-[#f8f8f2] font-mono antialiased overflow-x-hidden min-h-screen pb-16">
         {/* Global terminal grid background and base layer */}
-        <div className="terminal-grid-bg" />
-
         <Navbar />
         <div className="pt-12"> {/* Space for Mac Title Bar */}
           {children}
