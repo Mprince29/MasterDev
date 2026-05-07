@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth bg-[var(--bg)] ${inter.variable} ${newsreader.variable}`}>
       <body className="antialiased overflow-x-hidden min-h-screen text-[var(--text)] font-sans">
-        <main className="min-h-screen flex flex-col items-center justify-center pt-12 pb-0 px-6 sm:px-12 md:px-24">
+        <main className="min-h-screen flex flex-col items-center justify-center pt-12 pb-0 px-4 sm:px-8 md:px-12">
           <div className="w-full max-w-3xl">
             {children}
           </div>

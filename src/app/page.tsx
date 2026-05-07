@@ -23,7 +23,7 @@ export default function Home() {
           Available for freelance work
         </div>
 
-        <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-[var(--text)] tracking-tight mb-5 leading-[1.1]">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[var(--text)] tracking-tight mb-5 leading-[1.1]">
           Master Prince
         </h1>
         <p className="text-[var(--text-soft)] text-lg md:text-xl leading-relaxed max-w-2xl font-light mb-4">
@@ -87,28 +87,28 @@ export default function Home() {
         <div className="space-y-10">
           {/* M37 Labs */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
               <div>
                 <h3 className="text-base font-bold text-[var(--text)]">Full Stack Developer · Applied AI</h3>
                 <span className="text-[var(--accent-dark)] text-xs font-semibold uppercase tracking-widest mt-0.5 block">M37 Labs · Delhi, India · Full-time</span>
               </div>
-              <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-lg border border-[var(--line)]">May 2024 – Present</span>
+              <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-lg border border-[var(--line)] shrink-0">May 2024 – Present</span>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 mb-3">
-              <div className="col-span-2 rounded-2xl p-7 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+              <div className="md:col-span-2 rounded-2xl p-7 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                 <Mic size={22} className="text-[var(--accent)] mb-4" />
                 <p className="text-2xl font-bold text-[var(--text)] leading-snug mb-2">Voice-Controlled Multi-Agent Platform</p>
                 <p className="text-[var(--text-soft)] text-sm leading-relaxed">An enterprise-grade autonomous multi-agent platform that automates workflows across email, documents, calendars, spreadsheets, presentations, and voice systems using a unified multi-LLM architecture. Its core innovation, the AgentBrain Pipeline, creates intelligent agents through autonomous research, context fusion, and dynamic identity synthesis instead of static prompting.</p>
               </div>
-              <div className="col-span-1 rounded-2xl p-6 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
+              <div className="md:col-span-1 rounded-2xl p-6 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                 <Bot size={20} className="text-[var(--accent)] mb-4" />
                 <p className="text-lg font-bold text-[var(--text)] leading-snug mb-2">AI Developer Assistant</p>
                 <p className="text-[var(--text-soft)] text-xs leading-relaxed">Claude API-powered tool routing to agents for code Q&amp;A, refactoring, Git, and OCR screen analysis. Dual OCR pipeline. MongoDB chat history.</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 mb-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-3">
               <div className="rounded-2xl p-6 flex flex-col justify-end min-h-[190px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                 <MessageSquare size={20} className="text-[var(--accent)] mb-4" />
                 <p className="text-base font-bold text-[var(--text)] leading-snug mb-2">Media Monitoring NL Search</p>
@@ -126,7 +126,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               <div className="rounded-2xl p-6 flex flex-col justify-end min-h-[190px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                 <Users size={20} className="text-[var(--accent)] mb-4" />
                 <p className="text-base font-bold text-[var(--text)] leading-snug mb-2">AI Recruitment Platform</p>
@@ -147,21 +147,21 @@ export default function Home() {
 
           {/* Luchkee Health */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
               <div>
                 <h3 className="text-base font-bold text-[var(--text)]">Full Stack Developer Intern</h3>
                 <span className="text-[var(--accent-dark)] text-xs font-semibold uppercase tracking-widest mt-0.5 block">Luchkee Health · Delhi, India · Internship</span>
               </div>
-              <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-lg border border-[var(--line)]">Dec 2024 – Feb 2025</span>
+              <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-lg border border-[var(--line)] shrink-0">Dec 2024 – Feb 2025</span>
             </div>
 
-            <div className="grid grid-cols-3 gap-3">
-              <div className="col-span-2 rounded-2xl p-7 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="md:col-span-2 rounded-2xl p-7 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                 <ShieldCheck size={22} className="text-[var(--accent)] mb-4" />
                 <p className="text-2xl font-bold text-[var(--text)] leading-snug mb-2">Healthcare Platform</p>
                 <p className="text-[var(--text-soft)] text-sm leading-relaxed">MERN stack app with JWT auth, role-based access control, and encrypted patient data storage. Built and shipped features across the full stack independently as part of a small engineering team.</p>
               </div>
-              <div className="col-span-1 flex flex-col gap-3">
+              <div className="md:col-span-1 flex flex-col gap-3 sm:flex-row md:flex-col">
                 <div className="rounded-2xl p-5 flex flex-col justify-end flex-1 bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                   <Network size={18} className="text-[var(--accent)] mb-3" />
                   <p className="text-sm font-bold text-[var(--text)] leading-snug mb-1">API Validation</p>
@@ -209,7 +209,7 @@ export default function Home() {
               tags: ["Python", "NumPy", "scikit-learn", "XGBoost", "Pandas"],
             },
           ].map(({ icon: Icon, title, href, desc, tags }) => (
-            <div key={title} className="soft-card p-5 aspect-square flex flex-col group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+            <div key={title} className="soft-card p-5 sm:aspect-square flex flex-col group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden min-h-[220px]">
               <div className="flex items-start justify-between gap-2 mb-3">
                 <div className="w-9 h-9 bg-[var(--surface-muted)] rounded-xl flex items-center justify-center border border-[var(--line)] shrink-0">
                   <Icon size={17} className="text-[var(--accent-dark)]" />
