@@ -1,26 +1,26 @@
 import type { Metadata, Viewport } from "next"
-import { JetBrains_Mono } from "next/font/google"
+import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/Navbar"
 
-const jetbrains = JetBrains_Mono({
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", preload: true })
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
   display: "swap",
+  preload: true,
 })
 
-
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#F3F1EC",
   width: "device-width",
   initialScale: 1,
 }
 
 export const metadata: Metadata = {
-  title: "Prince | Full Stack Developer & AI Engineer",
+  title: "Master Prince | Full Stack Developer & Applied AI Engineer",
   description:
-    "Prince is a Full Stack Developer and AI Engineer based in Delhi, building production-ready Applied AI systems, multi-agent workflows, and highly optimized web applications.",
+    "Master Prince builds fast web apps, backend systems, and practical AI workflows for teams that need useful software without unnecessary complexity.",
   keywords: [
     "Full Stack Developer",
     "AI Engineer",
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     "Next.js",
     "Python",
     "Machine Learning",
-    "Freelance Web Developer Delhi",
+    "Freelance Developer Delhi",
   ],
-  authors: [{ name: "Prince" }],
-  creator: "Prince",
+  authors: [{ name: "Master Prince" }],
+  creator: "Master Prince",
   robots: {
     index: true,
     follow: true,
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Prince | Full Stack Developer & AI Engineer",
+    title: "Master Prince | Full Stack Developer & Applied AI Engineer",
     description:
-      "Prince is a Full Stack Developer and AI Engineer based in Delhi, building production-ready Applied AI systems, multi-agent workflows, and highly optimized web applications.",
+      "Fast web apps, backend systems, and practical AI workflows built with clarity.",
     url: "https://master-dev-pi.vercel.app",
     siteName: "Prince Portfolio",
     type: "website",
@@ -56,23 +56,20 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prince | Full Stack Developer & AI Engineer",
-    description: "Building production-grade AI systems and full-stack web applications.",
+    title: "Master Prince | Full Stack Developer & Applied AI Engineer",
+    description: "Building practical AI systems and full-stack web applications.",
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${jetbrains.variable} scroll-smooth bg-[#000000]`}
-    >
-      <body className="text-[#f8f8f2] font-mono antialiased overflow-x-hidden min-h-screen pb-16">
-        {/* Global terminal grid background and base layer */}
-        <Navbar />
-        <div className="pt-12"> {/* Space for Mac Title Bar */}
-          {children}
-        </div>
+    <html lang="en" className={`scroll-smooth bg-[var(--bg)] ${inter.variable} ${newsreader.variable}`}>
+      <body className="antialiased overflow-x-hidden min-h-screen text-[var(--text)] font-sans">
+        <main className="min-h-screen flex flex-col items-center justify-center pt-12 pb-0 px-6 sm:px-12 md:px-24">
+          <div className="w-full max-w-3xl">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   )

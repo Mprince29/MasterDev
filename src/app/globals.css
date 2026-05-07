@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
 :root {
-  --bg-terminal: rgba(0, 0, 0, 0.85);
-  --border-terminal: rgba(255, 255, 255, 0.15);
-  --text-primary: #f8f8f2;
-  --text-secondary: rgba(248, 248, 242, 0.6);
-  --text-muted: rgba(248, 248, 242, 0.35);
-  /* Terminal Accent Colors (Dracula inspired) */
-  --accent-cyan: #8be9fd;
-  --accent-green: #50fa7b;
-  --accent-pink: #ff79c6;
-  --accent-yellow: #f1fa8c;
-  --accent-purple: #bd93f9;
-  --font-mono: var(--font-jetbrains, monospace);
-  --selection-bg: rgba(189, 147, 249, 0.3);
+  --bg: #F3F1EC;
+  --bg-soft: #FAF9F6;
+  --surface: #FFFFFF;
+  --surface-muted: #F8F7F4;
+  --text: #2D2A26;
+  --text-soft: #5C5851;
+  --text-muted: #8A857D;
+  --line: #E5E3DB;
+  --accent: #308eec;
+  --accent-dark: #246bb8;
 }
 
 * {
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,59 +29,87 @@ html {
 }
 
 body {
-  background-color: #000;
+  margin: 0;
+  background-color: var(--bg);
   background-image:
-    linear-gradient(to right,  rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-attachment: fixed;
-  color: var(--text-primary);
-  font-family: var(--font-mono);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect x='18' y='18' width='6' height='6' rx='1.5' fill='none' stroke='%232D2A26' stroke-width='0.8' opacity='0.09'/%3E%3Crect x='78' y='18' width='6' height='6' rx='1.5' fill='none' stroke='%232D2A26' stroke-width='0.8' opacity='0.09'/%3E%3Crect x='18' y='78' width='6' height='6' rx='1.5' fill='none' stroke='%232D2A26' stroke-width='0.8' opacity='0.09'/%3E%3Crect x='78' y='78' width='6' height='6' rx='1.5' fill='none' stroke='%232D2A26' stroke-width='0.8' opacity='0.09'/%3E%3Ccircle cx='48' cy='48' r='3' fill='none' stroke='%232D2A26' stroke-width='0.8' opacity='0.09'/%3E%3Ccircle cx='21' cy='21' r='1.5' fill='%232D2A26' opacity='0.07'/%3E%3Ccircle cx='81' cy='21' r='1.5' fill='%232D2A26' opacity='0.07'/%3E%3Ccircle cx='21' cy='81' r='1.5' fill='%232D2A26' opacity='0.07'/%3E%3Ccircle cx='81' cy='81' r='1.5' fill='%232D2A26' opacity='0.07'/%3E%3Cline x1='24' y1='21' x2='48' y2='21' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='48' y1='21' x2='48' y2='45' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='78' y1='21' x2='51' y2='21' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='21' y1='24' x2='21' y2='48' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='21' y1='48' x2='45' y2='48' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='81' y1='24' x2='81' y2='48' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='81' y1='48' x2='51' y2='48' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='21' y1='78' x2='21' y2='51' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='21' y1='51' x2='45' y2='51' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='81' y1='78' x2='81' y2='51' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='81' y1='51' x2='51' y2='51' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='24' y1='81' x2='48' y2='81' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='48' y1='81' x2='48' y2='51' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3Cline x1='78' y1='81' x2='51' y2='81' stroke='%232D2A26' stroke-width='0.7' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  color: var(--text);
+  font-family: var(--font-sans);
 }
 
 ::selection {
-  background: var(--selection-bg);
-  color: var(--text-primary);
+  background: rgba(218, 119, 86, 0.2);
+  color: var(--text);
 }
 
-/* GPU-accelerated animations only — no layout-triggering transitions */
-.animate-element {
-  will-change: transform, opacity;
+a,
+button,
+input,
+textarea {
+  font: inherit;
 }
 
-@keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.section-shell {
+  width: min(900px, calc(100% - 32px));
+  margin-inline: auto;
 }
 
-.cursor-blink {
-  animation: cursor-blink 1s step-end infinite;
+.soft-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
-/* Terminal grid background — defined here to avoid Tailwind v4 arbitrary-value comma parsing issues */
-.terminal-grid-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-color: #000;
-  background-image:
-    linear-gradient(to right,  rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
+.text-balance {
+  text-wrap: balance;
 }
 
-/* Scrollbar optimized for Mac look */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  background: #D4D2CB;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #BDBBB4;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-section {
+  opacity: 0;
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.skill-tile:hover {
+  background: var(--surface);
+  border-color: var(--tile-border);
+  box-shadow: 0 4px 16px var(--tile-shadow);
+}
+
+.skill-tile:hover .skill-icon-wrap {
+  color: var(--tile-color) !important;
 }

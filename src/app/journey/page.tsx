@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
 import { FaSchool, FaUniversity, FaBriefcase, FaCrown } from "react-icons/fa";
 import Link from "next/link";
@@ -45,12 +44,12 @@ export default function JourneyPage() {
       badge: "Internship"
     },
     {
-      title: "Full Stack Developer Intern",
+      title: "Full Stack Developer · Applied AI",
       subtitle: "M37 Labs",
-      date: "May 2025 – Ongoing",
-      description: "Working on cutting-edge projects involving AI and full-stack development. Contributing to innovative solutions and learning new technologies.",
+      date: "May 2024 – Present",
+      description: "Building production AI systems for enterprise clients across India and Malaysia   multi-agent automation, NL-to-SQL search, AI recruitment, and brand intelligence tools.",
       icon: <FaBriefcase className="text-white text-xl" />,
-      badge: "Internship"
+      badge: "Full-time"
     },
     {
       title: "General Secretary – IEEE JHSB",

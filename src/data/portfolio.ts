@@ -1,11 +1,11 @@
 export const hero = {
-  name: "Prince",
-  title: "Full Stack Developer",
-  subtitle: "Applied AI Engineer",
+  name: "Master Prince",
+  title: "Full Stack Developer & Applied AI Engineer",
+  subtitle: "Full Stack Developer",
   tagline:
-    "I build backend systems and applied AI workflows. From setting up NL-to-SQL databases to fine-tuning local models, I focus on shipping code that works in production.",
+    "I build fast web apps, reliable backend systems, and practical AI workflows for teams that need software to save time, answer questions, and move work forward.",
   location: "Delhi, India",
-  availability: "Open to Remote · Hybrid · Freelance · Gig Work",
+  availability: "Available for remote, hybrid, freelance, and full-time work",
   email: "prince28.01.2022@gmail.com",
   github: "https://github.com/Mprince29",
   linkedin: "https://www.linkedin.com/in/master-prince-83609b257/",
@@ -14,18 +14,18 @@ export const hero = {
 }
 
 export const about = {
-  bio: "I build backend systems and applied AI workflows. Right now I work at M37 Labs in Delhi, automating processes for enterprise clients across India and Malaysia. I've finished my B.Tech in CSE (AI) at Jamia Hamdard in 2025. Before this, I interned at a health-tech startup working on their MERN stack platform. I care a lot about system performance, database optimization, and making AI features actually useful instead of just cool demos.",
+  bio: "I am a full stack developer focused on applied AI. My work is usually a mix of clean product interfaces, solid APIs, database performance, and AI features that people can actually use day to day. At M37 Labs, I have worked on tools for enterprise clients across India and Malaysia, including multi-agent workflows, natural-language database search, resume screening, and automated email classification.",
   currentRole: "Full Stack Developer (Applied AI) @ M37 Labs",
   education: "B.Tech CSE (AI) · Jamia Hamdard · 2025 · CGPA 7.8",
   stats: [
-    { label: "AI systems shipped", value: "5+" },
-    { label: "Workflows fully automated", value: "1K+" },
-    { label: "Time saved on screening", value: "70%" },
-    { label: "Classification accuracy", value: "95%+" },
+    { label: "Automated workflows handled daily", value: "1,000+" },
+    { label: "Publications searchable with AI", value: "200K+" },
+    { label: "Recruitment time reduced", value: "70%" },
+    { label: "Model accuracy reached", value: "95%+" },
   ],
   certifications: [
-    "Data Analytics with Python (NPTEL — 2025)",
-    "Introduction to Database Systems (NPTEL — 2025)",
+    "Data Analytics with Python (NPTEL   2025)",
+    "Introduction to Database Systems (NPTEL   2025)",
   ],
 }
 
@@ -37,13 +37,13 @@ export const experience = [
     location: "Delhi, India",
     type: "Full-time",
     bullets: [
-      "Built and deployed several AI features for clients across India and Malaysia.",
-      "Created a custom workflow platform with Next.js and FastAPI that acts like a smart router, sending over 1,000 tasks daily to different specialized AI agents.",
-      "Added a natural language search to a 200,000+ publication database using LangChain. I used Redis heavily here to keep the query times down.",
-      "Automated resume screening using spaCy for text parsing and GPT-4 for scoring candidates.",
-      "Trained a scikit-learn email classifier to categorize incoming messages and draft automated replies.",
-      "Shifted a lot of our heavy API data aggregation to PostgreSQL and added Redis caching, which noticeably improved response times.",
-      "Set up deployments across AWS, Vercel, and Render using Docker.",
+      "Built production AI features for enterprise clients across India and Malaysia.",
+      "Developed a Next.js and FastAPI workflow platform that routes 1,000+ daily tasks to specialized AI agents.",
+      "Added natural-language search for a 200,000+ publication database with LangChain, SQL, and Redis caching.",
+      "Created resume screening flows using spaCy and GPT-4 to reduce manual shortlisting time by about 70%.",
+      "Trained a scikit-learn email classifier to sort incoming messages and draft first replies.",
+      "Improved slow API paths by moving heavy aggregation into PostgreSQL and adding Redis where repeated reads mattered.",
+      "Handled deployments across AWS, Vercel, and Render with Docker-based workflows.",
     ],
   },
   {
@@ -53,9 +53,9 @@ export const experience = [
     location: "Delhi, India",
     type: "Internship",
     bullets: [
-      "Worked as a full stack developer on a healthcare platform using the MERN stack.",
-      "Wrote Zod schemas for all our APIs to catch bad requests early.",
-      "Added indexes to MongoDB and profiled slow queries to drop the main dashboard load time from 3 seconds to under 1 second.",
+      "Worked on a MERN healthcare platform as a full stack developer intern.",
+      "Added Zod validation across APIs so bad requests were caught early and clearly.",
+      "Profiled MongoDB queries and added indexes, bringing the main dashboard from roughly 3 seconds to under 1 second.",
     ],
   },
 ]
@@ -118,7 +118,7 @@ export const projects = [
     id: 1,
     title: "Mental Health AI",
     description:
-      "Fine-tuned a Qwen-3B model entirely on Apple Silicon just to see how far I could push local hardware. I scraped 65,000 Reddit posts, cleaned the dataset, and generated synthetic replies using Ollama. It serves as both a 14-class symptom classifier and an empathetic chatbot. Served via FastAPI.",
+      "A local AI research project where I fine-tuned Qwen on Apple Silicon using cleaned Reddit data and synthetic responses. It works as a symptom classifier and chatbot, served through FastAPI.",
     category: "ML Research",
     tags: ["Python", "MLX-LM", "LoRA", "Qwen2.5", "FastAPI", "Ollama"],
     image: "/projects/mental-health.png",
@@ -131,7 +131,7 @@ export const projects = [
     id: 2,
     title: "Multi-Agent Workflow Platform",
     description:
-      "Our production platform for running different specialized AI agents. You type a prompt, and a routing engine decides which agent should handle it (drafting emails, managing calendars, processing docs). It runs hundreds of automated tasks daily.",
+      "A production workflow system that routes user requests to the right AI agent, whether the job is email drafting, document handling, calendar work, or another internal process.",
     category: "AI Systems",
     tags: ["Python", "FastAPI", "LiteLLM", "OpenAI", "MCP", "Redis", "Next.js"],
     image: "/projects/multi-agent.png",
@@ -144,7 +144,7 @@ export const projects = [
     id: 3,
     title: "NL-to-SQL Media Monitoring Chatbot",
     description:
-      "A chat interface connected to a 3.6 GB MySQL database of publications. Users ask questions in plain English, and LangChain writes the SQL to fetch the answers. I added Redis caching so frequent queries load instantly.",
+      "A chat interface for a large publication database. Users ask questions in plain English, the system writes SQL, and Redis keeps repeated queries fast.",
     category: "AI Systems",
     tags: ["Python", "FastAPI", "LangChain", "MySQL", "Redis", "GPT-4"],
     image: "/projects/nlsql.png",
@@ -157,7 +157,7 @@ export const projects = [
     id: 4,
     title: "AI Recruitment Screening System",
     description:
-      "An internal tool for HR to speed up hiring. It uses spaCy to extract context from a resume rather than just matching keywords, and then GPT-4 scores the candidate against the job description. It processes hundreds of resumes in seconds.",
+      "A hiring support tool that reads resumes, extracts useful context, and compares candidates against a job description so HR teams can shortlist faster.",
     category: "AI Systems",
     tags: ["Python", "FastAPI", "spaCy", "OpenAI", "Scikit-learn", "PDF parsing"],
     image: "/projects/recruitment.png",
@@ -170,7 +170,7 @@ export const projects = [
     id: 5,
     title: "Delhi PM2.5 AQI Forecasting",
     description:
-      "My final year university project. I wanted to understand the math behind backpropagation, so I built a neural network completely from scratch in pure NumPy (no PyTorch or TensorFlow) to predict Delhi's air quality using 6 years of sensor data.",
+      "My final year project: a neural network built from scratch in NumPy to forecast Delhi PM2.5 levels from six years of air quality data.",
     category: "ML Research",
     tags: ["Python", "NumPy", "Pandas", "Scikit-learn", "CPCB Data"],
     image: "/projects/aqi.png",
@@ -183,7 +183,7 @@ export const projects = [
     id: 6,
     title: "Intelligent Proctoring Framework",
     description:
-      "A real-time browser-based exam monitoring tool. It tracks where the user is looking and checks for multiple faces or objects to detect cheating. Mostly an excuse for me to play around with face-api.js and MediaPipe.",
+      "A browser-based exam monitoring tool that checks gaze direction, multiple faces, and object presence using computer vision.",
     category: "AI Systems",
     tags: ["Python", "OpenCV", "MediaPipe", "Flask", "face-api.js"],
     image: "/2project.png",
@@ -196,9 +196,9 @@ export const projects = [
 
 export const terminalLines = [
   { delay: 0, text: "$ whoami", type: "command" },
-  { delay: 500, text: "Prince — Full Stack Dev · Applied AI Engineer · Delhi", type: "output" },
+  { delay: 500, text: "Prince   Full Stack Dev · Applied AI Engineer · Delhi", type: "output" },
   { delay: 1000, text: "$ cat work.txt", type: "command" },
-  { delay: 1500, text: "M37 Labs — building AI systems for enterprise clients in India & Malaysia", type: "output" },
+  { delay: 1500, text: "M37 Labs   building AI systems for enterprise clients in India & Malaysia", type: "output" },
   { delay: 2100, text: "$ ls personal_projects/", type: "command" },
   { delay: 2600, text: "Mental-Health-AI/  AQI-Forecasting/  Proctoring-Framework/  ...", type: "output" },
   { delay: 3200, text: "$ cat skills/ai.txt", type: "command" },
