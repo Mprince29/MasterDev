@@ -10,7 +10,7 @@ export const hero = {
   github: "https://github.com/Mprince29",
   linkedin: "https://www.linkedin.com/in/master-prince-83609b257/",
   twitter: "https://x.com/Mprince_28",
-  resumeUrl: "/Master_Prince_Resume.pdf",
+  resumeUrl: "/Master_Prince_Resume.pdf?v=2",
 }
 
 export const about = {
@@ -114,6 +114,19 @@ export const skills = {
 }
 
 export const projects = [
+  {
+    id: 7,
+    title: "Slate",
+    description:
+      "An end-to-end intelligence engine for modern investigative journalism. Automates deep-dive research, narrative structuring, and editorial auditing using multi-model LLM orchestration.",
+    category: "AI Systems",
+    tags: ["FastAPI", "Next.js", "MongoDB", "Gemini", "Claude", "GPT-4", "SerpAPI"],
+    image: "/projects/slate.png",
+    github: "https://github.com/Mprince29/Slate",
+    live: null,
+    featured: true,
+    highlight: "Multi-model orchestration · Real-time discovery",
+  },
   {
     id: 1,
     title: "Mental Health AI",

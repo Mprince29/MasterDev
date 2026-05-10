@@ -188,6 +188,13 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
+              icon: Search,
+              title: "Slate",
+              href: "https://github.com/Mprince29/Slate",
+              desc: "An end-to-end intelligence engine for modern investigative journalism. Automates deep-dive research, narrative structuring, and editorial auditing using multi-model LLM orchestration (Gemini, Claude, GPT-4) and real-time discovery.",
+              tags: ["FastAPI", "Next.js", "Gemini", "Claude", "SerpAPI"],
+            },
+            {
               icon: BrainCircuit,
               title: "Mental Health AI System",
               href: "https://github.com/Mprince29/Mental-Health-AI",
@@ -196,7 +203,7 @@ export default function Home() {
             },
             {
               icon: ShieldCheck,
-              title: "AI Exam Proctoring",
+              title: "ML Exam Proctoring System",
               href: "https://github.com/Mprince29/Intelligent-Proctoring-Detection-Framework",
               desc: "Final year project. Browser-based exam monitor that catches multiple faces, gaze deviation, head pose issues, and unauthorised objects at 95%+ accuracy. Auto-generates a timestamped violation report with annotated frames after each session.",
               tags: ["OpenCV", "MediaPipe", "face-api.js", "Flask", "Python"],
