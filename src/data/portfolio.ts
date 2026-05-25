@@ -115,19 +115,6 @@ export const skills = {
 
 export const projects = [
   {
-    id: 7,
-    title: "Slate",
-    description:
-      "An end-to-end intelligence engine for modern investigative journalism. Automates deep-dive research, narrative structuring, and editorial auditing using multi-model LLM orchestration.",
-    category: "AI Systems",
-    tags: ["FastAPI", "Next.js", "MongoDB", "Gemini", "Claude", "GPT-4", "SerpAPI"],
-    image: "/projects/slate.png",
-    github: "https://github.com/Mprince29/Slate",
-    live: null,
-    featured: true,
-    highlight: "Multi-model orchestration · Real-time discovery",
-  },
-  {
     id: 1,
     title: "Mental Health AI",
     description:
@@ -193,17 +180,17 @@ export const projects = [
     highlight: "R²=0.9501 · Built from scratch",
   },
   {
-    id: 6,
-    title: "Intelligent Proctoring Framework",
+    id: 8,
+    title: "Semantic Memory Engine",
     description:
-      "A browser-based exam monitoring tool that checks gaze direction, multiple faces, and object presence using computer vision.",
+      "A backend semantic memory and prompt compression engine for local LLMs running through Ollama. Converts conversations into Symbolic Prompt Language (SPL) to achieve 10x prompt compression, with fine-tuned models via QLoRA.",
     category: "AI Systems",
-    tags: ["Python", "OpenCV", "MediaPipe", "Flask", "face-api.js"],
-    image: "/2project.png",
-    github: "https://github.com/Mprince29/Intelligent-Proctoring-Detection-Framework",
+    tags: ["Python", "Ollama", "Qwen2.5", "LoRA", "ChromaDB", "SQLite", "spaCy"],
+    image: "/projects/semantic-memory.png",
+    github: "https://github.com/Mprince29/Semantic-Memory-Engine",
     live: null,
-    featured: false,
-    highlight: "95%+ detection accuracy",
+    featured: true,
+    highlight: "10x compression · Fine-tuned local models",
   },
 ]
 

@@ -159,20 +159,9 @@ export default function Home() {
               <div className="md:col-span-2 rounded-2xl p-7 flex flex-col justify-end min-h-[200px] bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
                 <ShieldCheck size={22} className="text-[var(--accent)] mb-4" />
                 <p className="text-2xl font-bold text-[var(--text)] leading-snug mb-2">Healthcare Platform</p>
-                <p className="text-[var(--text-soft)] text-sm leading-relaxed">MERN stack app with JWT auth, role-based access control, and encrypted patient data storage. Built and shipped features across the full stack independently as part of a small engineering team.</p>
+                <p className="text-[var(--text-soft)] text-sm leading-relaxed">MERN stack app with JWT auth, RBAC, and encrypted patient data storage. Built and shipped features across the full stack independently as part of a small engineering team.</p>
               </div>
-              <div className="md:col-span-1 flex flex-col gap-3 sm:flex-row md:flex-col">
-                <div className="rounded-2xl p-5 flex flex-col justify-end flex-1 bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
-                  <Network size={18} className="text-[var(--accent)] mb-3" />
-                  <p className="text-sm font-bold text-[var(--text)] leading-snug mb-1">API Validation</p>
-                  <p className="text-[var(--text-soft)] text-xs leading-relaxed">Zod validation on every Express endpoint   cut bad API calls by 80%.</p>
-                </div>
-                <div className="rounded-2xl p-5 flex flex-col justify-end flex-1 bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--accent)] hover:shadow-md transition-all duration-200">
-                  <Database size={18} className="text-[var(--accent)] mb-3" />
-                  <p className="text-sm font-bold text-[var(--text)] leading-snug mb-1">Query Performance</p>
-                  <p className="text-[var(--text-soft)] text-xs leading-relaxed">MongoDB indexes   dashboard load from ~3s to under 1s.</p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -188,32 +177,25 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
-              icon: Search,
-              title: "Slate",
-              href: "https://github.com/Mprince29/Slate",
-              desc: "An end-to-end intelligence engine for modern investigative journalism. Automates deep-dive research, narrative structuring, and editorial auditing using multi-model LLM orchestration (Gemini, Claude, GPT-4) and real-time discovery.",
-              tags: ["FastAPI", "Next.js", "Gemini", "Claude", "SerpAPI"],
-            },
-            {
               icon: BrainCircuit,
               title: "Mental Health AI System",
               href: "https://github.com/Mprince29/Mental-Health-AI",
-              desc: "Fine-tuned Qwen on Apple Silicon using cleaned Reddit data and synthetic responses. 14-class symptom classifier that also works as a chatbot. Runs locally via MLX   nothing leaves the device. Served through FastAPI.",
+              desc: "I fine-tuned Qwen on my Mac using Reddit data to build a 14 class symptom classifier that doubles as a chatbot. Runs entirely locally nothing ever leaves your device. Handles everything through FastAPI.",
               tags: ["Python", "MLX-LM", "LoRA", "Qwen2.5", "FastAPI"],
-            },
-            {
-              icon: ShieldCheck,
-              title: "ML Exam Proctoring System",
-              href: "https://github.com/Mprince29/Intelligent-Proctoring-Detection-Framework",
-              desc: "Final year project. Browser-based exam monitor that catches multiple faces, gaze deviation, head pose issues, and unauthorised objects at 95%+ accuracy. Auto-generates a timestamped violation report with annotated frames after each session.",
-              tags: ["OpenCV", "MediaPipe", "face-api.js", "Flask", "Python"],
             },
             {
               icon: Wind,
               title: "Delhi PM2.5 AQI Forecasting",
               href: "https://github.com/Mprince29/ML-via-Delhi-AQI",
-              desc: "Neural network built entirely from scratch in NumPy   ReLU, Adam optimiser, MSE loss. Trained on 6 years of CPCB sensor data. Random Forest baseline hit R² = 0.9501. No ML frameworks for the core model.",
+              desc: "Wrote a neural network from scratch in NumPy to forecast Delhi's air quality. Trained on 6 years of real sensor data. Hit R² = 0.95 better than what Random Forest could do. Built it without any ML frameworks, just the basics.",
               tags: ["Python", "NumPy", "scikit-learn", "XGBoost", "Pandas"],
+            },
+            {
+              icon: Layers,
+              title: "Semantic Memory Engine",
+              href: "https://github.com/Mprince29/Semantic-Memory-Engine",
+              desc: "Wrote a memory system that takes long conversations and compresses them into a compact format. Fine-tuned Qwen2.5 to think directly from the compressed data no need to unpack it back to words. Saves about 10x the tokens. All local with Ollama.",
+              tags: ["Python", "Ollama", "Qwen2.5", "LoRA", "ChromaDB", "spaCy"],
             },
           ].map(({ icon: Icon, title, href, desc, tags }) => (
             <div key={title} className="soft-card p-5 sm:aspect-square flex flex-col group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden min-h-[220px]">
