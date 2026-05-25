@@ -4,7 +4,7 @@ import {
   BrainCircuit, Mic, Bot, Users, MessageSquare,
   Briefcase, Database, ShieldCheck,
   Wind, Award, Zap, FileText, LayoutTemplate,
-  Network, Search, Radio, Layers,
+  Search, Radio, Layers,
 } from "lucide-react";
 import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
 
@@ -208,7 +208,7 @@ export default function Home() {
                 </a>
               </div>
               <h3 className="text-sm font-semibold text-[var(--text)] mb-2 leading-snug">{title}</h3>
-              <p className="text-[var(--text-soft)] text-[11px] leading-relaxed flex-grow">{desc}</p>
+              <p className="text-[var(--text-soft)] text-[11px] leading-relaxed flex-grow line-clamp-4">{desc}</p>
               <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-[var(--line)]">
                 {tags.map((t) => (
                   <span key={t} className="px-1.5 py-0.5 bg-[var(--bg-soft)] text-[var(--text-muted)] text-[10px] rounded border border-[var(--line)]">{t}</span>
