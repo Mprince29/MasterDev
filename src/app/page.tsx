@@ -99,7 +99,7 @@ export default function Home() {
                 <h3 className="text-base font-bold text-[var(--text)]">Full Stack Developer · Applied AI</h3>
                 <span className="text-[var(--accent-dark)] text-xs font-semibold uppercase tracking-widest mt-0.5 block">M37 Labs · Delhi, India · Full-time</span>
               </div>
-              <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-lg border border-[var(--line)] shrink-0">May 2024 – Present</span>
+              <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-soft)] px-3 py-1.5 rounded-lg border border-[var(--line)] shrink-0">May 2025 – June 2026</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
