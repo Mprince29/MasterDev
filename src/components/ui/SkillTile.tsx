@@ -45,23 +45,24 @@ const AI_ML = [
   { name: "Selenium",    Icon: Globe,        color: "#43B02A" },
 ];
 
-function Tile({ name, Icon, color }: { name: string; Icon: React.ElementType; color: string }) {
+function Tile({ name, Icon, color }: { name: string; Icon: React.ElementType; color?: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex flex-col items-center justify-center p-2 h-full border rounded-xl cursor-default transition-all duration-200"
+      className="flex flex-col items-center justify-center p-2 h-full border rounded-xl cursor-default transition-all duration-400 ease-out"
       style={{
-        borderColor: hovered ? `${color}70` : "var(--line)",
-        boxShadow: hovered ? `0 4px 16px ${color}25` : undefined,
+        borderColor: hovered ? "var(--line)" : "transparent",
+        boxShadow: hovered ? "0 10px 30px -10px rgba(0,0,0,0.08)" : "none",
         background: hovered ? "var(--surface)" : "var(--surface-muted)",
+        transform: hovered ? "scale(1.05)" : "scale(1)"
       }}
     >
-      <span className="mb-2 shrink-0 transition-colors duration-200" style={{ color: hovered ? color : "var(--text-muted)" }}>
+      <span className="mb-2 shrink-0 transition-colors duration-300" style={{ color: hovered ? "var(--text)" : "var(--text-muted)" }}>
         <Icon size={22} />
       </span>
-      <span className="text-[10px] font-semibold text-[var(--text-soft)] text-center leading-tight">{name}</span>
+      <span className="text-[10px] font-semibold transition-colors duration-300 text-center leading-tight" style={{ color: hovered ? "var(--text)" : "var(--text-soft)" }}>{name}</span>
     </div>
   );
 }

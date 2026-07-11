@@ -1,9 +1,15 @@
+import Image from "next/image";
+import Link from "next/link";
 import { SkillsSection } from "@/components/ui/SkillTile";
+import { ContactForm } from "@/components/ContactForm";
+import { FadeInScroll } from "@/components/FadeInScroll";
+import { AnimatedHeroVector } from "@/components/AnimatedHeroVector";
+import { hero, projects } from "@/data/portfolio";
 import {
-  Mail, ExternalLink,
-  BrainCircuit, Mic, Bot, Users, MessageSquare,
+  Mail, ExternalLink, ArrowRight,
+  Mic, Bot, Users, MessageSquare,
   Briefcase, Database, ShieldCheck,
-  Wind, Award, Zap, FileText, LayoutTemplate,
+  Award, Zap, FileText, LayoutTemplate,
   Search, Radio, Layers,
 } from "lucide-react";
 import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
@@ -11,11 +17,12 @@ import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
 
 export default function Home() {
   return (
-    <div className="w-full fade-in-page">
+    <div className="w-full max-w-3xl mx-auto overflow-hidden relative">
+      <AnimatedHeroVector />
 
       {/* Hero */}
-      <section className="mb-14 fade-section" style={{ animationDelay: "0ms" }}>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--line)] text-xs font-medium text-[var(--accent-dark)] mb-6 shadow-sm">
+      <FadeInScroll id="about" className="mb-14 pt-12 relative z-10" delay={0}>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--line)] text-xs font-medium text-[var(--accent-dark)] mb-6 shadow-sm backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-dark)]" />
@@ -30,7 +37,7 @@ export default function Home() {
           Full Stack Developer &amp; Applied AI Engineer based in Delhi. I build AI-powered web products, fast APIs, and automation systems for startups, agencies, and businesses that want software to save time and move faster.
         </p>
         <p className="text-[var(--text-muted)] text-base leading-relaxed max-w-2xl mb-8">
-          Currently at M37 Labs building production AI systems for enterprise clients in India and Malaysia, multi-agent automation, NL to SQL search, AI recruitment, and brand intelligence tools. I also take on freelance projects: if you need an AI feature, a full stack web app, or an automation workflow built cleanly and shipped fast, I&apos;m available.
+          Built production AI systems for enterprise clients in India and Malaysia, multi-agent automation, NL to SQL search, AI recruitment, and brand intelligence tools. I also take on freelance projects: if you need an AI feature, a full stack web app, or an automation workflow built cleanly and shipped fast, I&apos;m available.
         </p>
 
         <div className="flex flex-wrap gap-3">
@@ -50,15 +57,15 @@ export default function Home() {
             <FaXTwitter size={16} />
             X
           </a>
-          <a href="/Master_Prince_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--surface)] border border-[var(--line)] text-[var(--text)] hover:bg-[#EBF3FF] hover:text-[var(--accent-dark)] hover:border-[var(--accent)] transition-all text-sm font-medium shadow-sm">
+          <a href={hero.resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--surface)] border border-[var(--line)] text-[var(--text)] hover:bg-[#EBF3FF] hover:text-[var(--accent-dark)] hover:border-[var(--accent)] transition-all text-sm font-medium shadow-sm">
             <FileText size={16} />
             Resume
           </a>
         </div>
-      </section>
+      </FadeInScroll>
 
       {/* Quick numbers */}
-      <section className="mb-14 fade-section" style={{ animationDelay: "80ms" }}>
+      <FadeInScroll className="mb-14" delay={0.1}>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { value: "6+", label: "AI systems shipped", sub: "End-to-end from spec to production" },
@@ -75,10 +82,10 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </FadeInScroll>
 
       {/* Work Experience */}
-      <section className="mb-14 fade-section" style={{ animationDelay: "160ms" }}>
+      <FadeInScroll id="experience" className="mb-14" delay={0.2}>
         <h2 className="font-serif text-3xl text-[var(--text)] mb-7 flex items-center gap-3">
           <Briefcase className="text-[var(--accent)]" size={26} />
           Work Experience
@@ -165,71 +172,80 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </FadeInScroll>
 
       {/* Projects */}
-      <section className="mb-14 fade-section" style={{ animationDelay: "240ms" }}>
+      <FadeInScroll className="mb-14" delay={0.2}>
         <h2 className="font-serif text-3xl text-[var(--text)] mb-7 flex items-center gap-3">
           <LayoutTemplate className="text-[var(--accent)]" size={26} />
           Projects
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            {
-              icon: BrainCircuit,
-              title: "Mental Health AI System",
-              href: "https://github.com/Mprince29/Mental-Health-AI",
-              desc: "I fine-tuned Qwen on my Mac using Reddit data to build a 14 class symptom classifier that doubles as a chatbot. Runs entirely locally nothing ever leaves your device. Handles everything through FastAPI.",
-              tags: ["Python", "MLX-LM", "LoRA", "Qwen2.5", "FastAPI"],
-            },
-            {
-              icon: Wind,
-              title: "Delhi PM2.5 AQI Forecasting",
-              href: "https://github.com/Mprince29/ML-via-Delhi-AQI",
-              desc: "Wrote a neural network from scratch in NumPy to forecast Delhi's air quality. Trained on 6 years of real sensor data. Hit R² = 0.95 better than what Random Forest could do. Built it without any ML frameworks, just the basics.",
-              tags: ["Python", "NumPy", "scikit-learn", "XGBoost", "Pandas"],
-            },
-            {
-              icon: Layers,
-              title: "Semantic Memory Engine",
-              href: "https://github.com/Mprince29/Semantic-Memory-Engine",
-              desc: "Wrote a memory system that takes long conversations and compresses them into a compact format. Fine-tuned Qwen2.5 to think directly from the compressed data no need to unpack it back to words. Saves about 10x the tokens. All local with Ollama.",
-              tags: ["Python", "Ollama", "Qwen2.5", "LoRA", "ChromaDB", "spaCy"],
-            },
-          ].map(({ icon: Icon, title, href, desc, tags }) => (
-            <div key={title} className="soft-card p-5 sm:aspect-square flex flex-col group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden min-h-[220px]">
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <div className="w-9 h-9 bg-[var(--surface-muted)] rounded-xl flex items-center justify-center border border-[var(--line)] shrink-0">
-                  <Icon size={17} className="text-[var(--accent-dark)]" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {projects
+            .filter((p) => p.image)
+            .slice(0, 3)
+            .map(({ id, title, github, category, description, tags, image }, index) => (
+              <div key={id} className="soft-card flex flex-col group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+                <div className="relative w-full h-64 shrink-0 overflow-hidden bg-[var(--surface-muted)]">
+                  <Image
+                    src={image as string}
+                    alt={title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+                  <span className="absolute top-3 left-3 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm text-white text-[11px] font-serif font-semibold flex items-center justify-center">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {github && (
+                    <a href={github} target="_blank" rel="noopener noreferrer" className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 bg-[var(--surface)]/90 hover:bg-[var(--bg-soft)] rounded-lg backdrop-blur-sm">
+                      <ExternalLink size={13} className="text-[var(--text-muted)]" />
+                    </a>
+                  )}
+                  <span className="absolute bottom-2.5 left-3.5 text-[10px] font-semibold text-white/90 uppercase tracking-[0.15em] drop-shadow">
+                    {category}
+                  </span>
                 </div>
-                <a href={href} target="_blank" rel="noopener noreferrer" className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 hover:bg-[var(--bg-soft)] rounded-lg">
-                  <ExternalLink size={13} className="text-[var(--text-muted)]" />
-                </a>
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="text-[15px] font-semibold text-[var(--text)] mb-2 leading-snug">{title}</h3>
+                  <p className="text-[var(--text-soft)] text-[12px] leading-relaxed flex-grow line-clamp-3">{description}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-[var(--line)]">
+                    {tags.slice(0, 3).map((t) => (
+                      <span key={t} className="px-2 py-0.5 bg-[var(--bg-soft)] text-[var(--text-muted)] text-[10px] font-medium rounded-full border border-[var(--line)]">{t}</span>
+                    ))}
+                    {tags.length > 3 && (
+                      <span className="px-2 py-0.5 text-[var(--text-muted)] text-[10px] font-medium">+{tags.length - 3}</span>
+                    )}
+                  </div>
+                </div>
               </div>
-              <h3 className="text-sm font-semibold text-[var(--text)] mb-2 leading-snug">{title}</h3>
-              <p className="text-[var(--text-soft)] text-[11px] leading-relaxed flex-grow line-clamp-4">{desc}</p>
-              <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-[var(--line)]">
-                {tags.map((t) => (
-                  <span key={t} className="px-1.5 py-0.5 bg-[var(--bg-soft)] text-[var(--text-muted)] text-[10px] rounded border border-[var(--line)]">{t}</span>
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
-      </section>
+
+        <div className="flex justify-center mt-6">
+          <Link
+            href="/project"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--surface)] border border-[var(--line)] text-[var(--text)] hover:bg-[var(--bg-soft)] hover:border-[var(--accent)] transition-all text-sm font-medium shadow-sm"
+          >
+            View all projects
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+      </FadeInScroll>
 
       {/* Technical Skills */}
-      <section className="mb-14 fade-section" style={{ animationDelay: "320ms" }}>
+      <FadeInScroll className="mb-14" delay={0.2}>
         <h2 className="font-serif text-3xl text-[var(--text)] mb-7 flex items-center gap-3">
           <Zap className="text-[var(--accent)]" size={26} />
           Technical Skills
         </h2>
         <SkillsSection />
-      </section>
+      </FadeInScroll>
 
       {/* Education & Certifications */}
-      <section className="mb-14 fade-section" style={{ animationDelay: "400ms" }}>
+      <FadeInScroll className="mb-14" delay={0.2}>
         <h2 className="font-serif text-3xl text-[var(--text)] mb-7 flex items-center gap-3">
           <FileText className="text-[var(--accent)]" size={26} />
           Education &amp; Certifications
@@ -277,10 +293,19 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </FadeInScroll>
+
+      {/* Contact */}
+      <FadeInScroll className="mb-14" delay={0.2}>
+        <h2 className="font-serif text-3xl text-[var(--text)] mb-7 flex items-center gap-3">
+          <Mail className="text-[var(--accent)]" size={26} />
+          Get in touch
+        </h2>
+        <ContactForm />
+      </FadeInScroll>
 
       {/* Footer */}
-      <footer className="text-center text-sm text-[var(--text-muted)] pt-6 mt-4 fade-section" style={{ animationDelay: "480ms" }}>
+      <FadeInScroll className="text-center text-sm text-[var(--text-muted)] pt-6 mt-4" delay={0.3}>
         <div className="flex items-center justify-center gap-5 mb-4">
           <a href="mailto:prince28.01.2022@gmail.com" className="hover:text-[#EA4335] transition-colors" title="Email"><Mail size={18} /></a>
           <a href="https://github.com/Mprince29" target="_blank" rel="noopener noreferrer" className="hover:text-[#24292f] transition-colors" title="GitHub"><FaGithub size={18} /></a>
@@ -288,7 +313,7 @@ export default function Home() {
           <a href="https://x.com/Mprince_28" target="_blank" rel="noopener noreferrer" className="hover:text-[#000000] transition-colors" title="X"><FaXTwitter size={18} /></a>
         </div>
         © {new Date().getFullYear()} Master Prince · Delhi, India
-      </footer>
+      </FadeInScroll>
 
     </div>
   );

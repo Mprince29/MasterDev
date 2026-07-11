@@ -1,5 +1,12 @@
 import type { NextConfig } from "next";
 
+// The backend lives on a separate origin (Render in production, localhost in dev).
+// CSP's connect-src must allow it explicitly, or the browser silently blocks every
+// fetch() the frontend makes to the API — forms, chat, and project data all break.
+const apiOrigin = process.env.NEXT_PUBLIC_API_URL
+  ? new URL(process.env.NEXT_PUBLIC_API_URL).origin
+  : "";
+
 const securityHeaders = [
   {
     key: "X-DNS-Prefetch-Control",
@@ -33,7 +40,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self'",
+      `connect-src 'self'${apiOrigin ? ` ${apiOrigin}` : ""}`,
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -67,7 +74,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:path*.pdf",
-        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+        headers: [{ key: "Cache-Control", value: "public, max-age=300, must-revalidate" }],
       },
     ];
   },

@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next"
-import { Inter, Newsreader } from "next/font/google"
+import { Newsreader } from "next/font/google"
+import { ChatWidget } from "@/components/ChatWidget"
+import { Navbar } from "@/components/Navbar"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", preload: true })
+
 const newsreader = Newsreader({
   subsets: ["latin"],
   style: ["normal", "italic"],
@@ -63,13 +65,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`scroll-smooth bg-[var(--bg)] ${inter.variable} ${newsreader.variable}`}>
-      <body className="antialiased overflow-x-hidden min-h-screen text-[var(--text)] font-sans">
-        <main className="min-h-screen flex flex-col items-center justify-center pt-12 pb-0 px-4 sm:px-8 md:px-12">
-          <div className="w-full max-w-3xl">
-            {children}
-          </div>
+    <html lang="en" className={`scroll-smooth bg-[var(--bg)] ${newsreader.variable}`} data-scroll-behavior="smooth">
+      <body className="antialiased overflow-x-hidden min-h-screen text-[var(--text)] font-sans" suppressHydrationWarning>
+        <Navbar />
+        <main className="min-h-screen w-full flex flex-col pt-24 pb-0 px-4 sm:px-8 md:px-12">
+          {children}
         </main>
+        <ChatWidget />
       </body>
     </html>
   )
