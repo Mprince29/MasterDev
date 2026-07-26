@@ -45,7 +45,7 @@ const AI_ML = [
   { name: "Selenium",    Icon: Globe,        color: "#43B02A" },
 ];
 
-function Tile({ name, Icon, color }: { name: string; Icon: React.ElementType; color?: string }) {
+function Tile({ name, Icon }: { name: string; Icon: React.ElementType; color?: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div

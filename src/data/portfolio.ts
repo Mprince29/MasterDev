@@ -109,7 +109,7 @@ export const skills = {
   ],
 }
 
-export const projects = [
+export const products = [
   {
     id: 1,
     title: "RecruitPilot",
@@ -123,6 +123,7 @@ export const projects = [
     category: "AI Systems",
     tags: ["Next.js", "Express", "FastAPI", "WebRTC", "MediaPipe"],
     image: "/projects/recruitpilot.jpg",
+    video: null,
     github: null,
     live: null,
     featured: true,
@@ -130,24 +131,6 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Slate",
-    description:
-      "Intelligence engine for investigative journalism automating deep-dive research, narrative structuring, and editorial auditing.",
-    details: [
-      "Research board linking leaked documents, filings, and whistleblower sources into a single entity map and timeline",
-      "Flags contradictions between sources and tracks citation coverage percentage on unverified claims",
-      "Auto-builds a narrative outline and a risk-level report (high/medium) for each investigation section",
-    ],
-    category: "AI Systems",
-    tags: ["FastAPI", "Next.js", "Gemini", "SerpAPI", "MongoDB"],
-    image: "/projects/slate.jpg",
-    github: null,
-    live: null,
-    featured: true,
-    highlight: "Multi-Model LLM Orchestration",
-  },
-  {
-    id: 3,
     title: "SiteBOT",
     description:
       "Production-ready agentic chatbot platform featuring ultra-low latency multilingual voice mode and dynamic UI streaming.",
@@ -159,13 +142,109 @@ export const projects = [
     category: "AI Systems",
     tags: ["Python", "FastAPI", "Next.js", "Sarvam API", "Groq"],
     image: "/projects/sitebot.jpg",
+    video: null,
     github: null,
     live: null,
     featured: true,
     highlight: "Voice-to-Voice Streaming",
   },
   {
+    id: 3,
+    title: "Slate",
+    description:
+      "Intelligence engine for investigative journalism automating deep-dive research, narrative structuring, and editorial auditing.",
+    details: [
+      "Research board linking leaked documents, filings, and whistleblower sources into a single entity map and timeline",
+      "Flags contradictions between sources and tracks citation coverage percentage on unverified claims",
+      "Auto-builds a narrative outline and a risk-level report (high/medium) for each investigation section",
+    ],
+    category: "AI Systems",
+    tags: ["FastAPI", "Next.js", "Gemini", "SerpAPI", "MongoDB"],
+    image: "/projects/slate.jpg",
+    video: null,
+    github: null,
+    live: null,
+    featured: true,
+    highlight: "Multi-Model LLM Orchestration",
+  },
+  {
     id: 4,
+    title: "AutoDeskAI",
+    description:
+      "Enterprise-grade autonomous multi-agent platform managing email, calendar, documents, spreadsheets, and voice interactions through a unified multi-provider LLM architecture.",
+    details: [
+      "AgentBrain Pipeline creates specialized agents through autonomous research, context fusion, and a SOUL Synthesis identity stage instead of static prompting",
+      "Routes 1,000+ daily tasks across email, documents, calendars, spreadsheets, and voice systems in live enterprise use",
+      "Hybrid LLM router with a DAG workflow executor, RAG auto-ingest pipeline, and Draft-First ghost-email protocol for safety",
+    ],
+    category: "AI Systems",
+    tags: ["Python", "FastAPI", "LiteLLM", "OpenAI", "MCP", "Redis", "Next.js"],
+    image: "/projects/multi-agent-workflow-platform.jpg",
+    video: null,
+    github: null,
+    live: null,
+    featured: true,
+    highlight: "Production · 1000+ daily workflows",
+  },
+  {
+    id: 5,
+    title: "AI Influencer Discovery Platform",
+    description:
+      "AI-driven influencer discovery, analysis, and reporting platform for brands and agencies.",
+    details: [
+      "Natural-language influencer search combining AI with live web scraping (Selenium, Google Search)",
+      "Deep analysis engine surfaces AI-driven insights and detailed profile metrics per creator",
+      "Automated stakeholder-ready PDF reports and async background processing via Celery and Redis",
+    ],
+    category: "AI Systems",
+    tags: ["FastAPI", "Gemini", "OpenAI", "Selenium", "Celery", "PostgreSQL"],
+    image: null,
+    video: "1Ld2-PpGt-X74-MnuMUAyUm63izUWNLzo",
+    github: null,
+    live: null,
+    featured: true,
+    highlight: "AI-Powered Influencer Discovery",
+  },
+  {
+    id: 6,
+    title: "Media Monitoring Chatbot",
+    description:
+      "Plain-English chat interface for a 200K+ publication media monitoring database with Redis-backed SQL execution.",
+    details: [
+      "Translates plain-English questions into SQL over a 3.6GB MySQL database of 200K+ press articles",
+      "Covers print, online, electronic, and social media monitoring across 112K+ tracked entities and 250+ languages",
+      "Redis caching on repeated queries cut average response time from 5s down to 2s",
+    ],
+    category: "AI Systems",
+    tags: ["Python", "FastAPI", "LangChain", "MySQL", "Redis", "GPT-4"],
+    image: "/projects/nl-to-sql-chatbot.jpg",
+    video: "140FV_NF7iHybbrXqo3lDOax1oqdApQQf",
+    github: null,
+    live: null,
+    featured: true,
+    highlight: "200K+ publications · 5s → 2s",
+  },
+  {
+    id: 7,
+    title: "AI Cruise Concierge Platform",
+    description:
+      "Premium AI-powered cruise concierge and cabin recommendation platform with a real-time conversational assistant.",
+    details: [
+      "Vector search over ship reviews and cabin layouts (Qdrant) powers persona-based recommendations (Family, Budget, Luxury, Quiet Zones)",
+      "Real-time RAG concierge answers hyper-specific questions about cabins, ships, and cruise lines using Gemini",
+      "FastAPI + ARQ background workers with PostgreSQL and Redis driving a glassmorphic Next.js discovery grid",
+    ],
+    category: "AI Systems",
+    tags: ["FastAPI", "Next.js", "Gemini", "Qdrant", "PostgreSQL", "Redis"],
+    image: null,
+    video: "1SJHZQFdrDwudUuTy4WJ-tLDBfEz3PPrN",
+    github: null,
+    live: null,
+    featured: true,
+    highlight: "RAG Concierge · Vector Search",
+  },
+  {
+    id: 8,
     title: "Cricket Video Analyzer",
     description:
       "Real-time cricket match analysis utilizing Ultron Live SDK for visual commentary and Whisper for audio processing.",
@@ -177,31 +256,17 @@ export const projects = [
     category: "AI Systems",
     tags: ["Next.js", "Ultron SDK", "Whisper", "Gemini", "FFmpeg"],
     image: "/projects/cricket-video-analyzer.jpg",
+    video: null,
     github: null,
     live: null,
     featured: true,
     highlight: "Live Visual Commentary",
   },
+]
+
+export const projects = [
   {
-    id: 6,
-    title: "Shared Ride Engine",
-    description:
-      "High-performance Redis-backed matching and pricing engine for shared ride pooling and solo assignments.",
-    details: [
-      "Real-time dispatch map matches riders on overlapping routes using Redis geospatial lookups at ~34ms latency",
-      "Scores each potential pool match and estimates solo vs. shared fare before confirming a route",
-      "Live driver availability, route detour %, and a full pricing breakdown surfaced to dispatchers",
-    ],
-    category: "Backend Systems",
-    tags: ["Python", "Redis", "GeoSpatial"],
-    image: "/projects/shared-ride-engine.jpg",
-    github: null,
-    live: null,
-    featured: true,
-    highlight: "Sub-millisecond Redis Matching",
-  },
-  {
-    id: 7,
+    id: 1,
     title: "Mental Health AI",
     description:
       "Local symptom classifier and chatbot fine-tuned on Qwen using Apple Silicon. Served via FastAPI.",
@@ -219,44 +284,26 @@ export const projects = [
     highlight: "Fine-tuned · 14 classes · Apple Silicon",
   },
   {
-    id: 8,
-    title: "Multi-Agent Workflow Platform",
+    id: 2,
+    title: "Semantic Memory Engine",
     description:
-      "Production system routing user requests to specialized AI agents for emails, documents, and workflows.",
+      "Semantic memory engine for local LLMs using Symbolic Prompt Language (SPL) for 10x prompt compression.",
     details: [
-      "AgentBrain Pipeline creates specialized agents through autonomous research and context fusion instead of static prompting",
-      "Routes 1,000+ daily tasks across email, documents, calendars, spreadsheets, and voice systems in live enterprise use",
-      "Unified multi-LLM architecture built with FastAPI, Redis, and a Next.js control dashboard",
+      "Converts long conversations into Symbolic Prompt Language (SPL), a compressed representation the model reads directly",
+      "Achieves roughly 10x prompt compression compared to passing raw conversation history",
+      "Qwen2.5 fine-tuned via QLoRA to reason from compressed SPL tokens without decompressing back to words, served locally through Ollama",
     ],
     category: "AI Systems",
-    tags: ["Python", "FastAPI", "LiteLLM", "OpenAI", "MCP", "Redis", "Next.js"],
-    image: "/projects/multi-agent-workflow-platform.jpg",
-    github: null,
+    tags: ["Python", "Ollama", "Qwen2.5", "LoRA", "ChromaDB", "SQLite", "spaCy"],
+    image: "/projects/semantic-memory-engine.jpg",
+    github: "https://github.com/Mprince29/Semantic-Memory-Engine",
     live: null,
     featured: true,
-    highlight: "Production · 1000+ daily workflows",
+    highlight: "10x compression · Fine-tuned local models",
   },
   {
-    id: 9,
-    title: "NL-to-SQL Media Monitoring Chatbot",
-    description:
-      "Plain-English chat interface for a 200K+ publication database with Redis-backed SQL execution.",
-    details: [
-      "Translates plain-English questions into SQL over a 3.6GB MySQL database of 200K+ press articles",
-      "LangChain handles query generation; GPT-4 formats and summarizes the returned results",
-      "Redis caching on repeated queries cut average response time from 5s down to 2s",
-    ],
-    category: "AI Systems",
-    tags: ["Python", "FastAPI", "LangChain", "MySQL", "Redis", "GPT-4"],
-    image: "/projects/nl-to-sql-chatbot.jpg",
-    github: null,
-    live: null,
-    featured: true,
-    highlight: "200K+ publications · 5s → 2s",
-  },
-  {
-    id: 11,
-    title: "Delhi PM2.5 AQI Forecasting",
+    id: 3,
+    title: "ML-via-Delhi-AQI",
     description:
       "Neural network built from scratch in NumPy to forecast Delhi PM2.5 levels using six years of data.",
     details: [
@@ -273,22 +320,22 @@ export const projects = [
     highlight: "R²=0.9501 · Built from scratch",
   },
   {
-    id: 12,
-    title: "Semantic Memory Engine",
+    id: 4,
+    title: "Shared Ride Algo",
     description:
-      "Semantic memory engine for local LLMs using Symbolic Prompt Language (SPL) for 10x prompt compression.",
+      "High-performance Redis-backed matching and pricing engine for shared ride pooling and solo assignments.",
     details: [
-      "Converts long conversations into Symbolic Prompt Language (SPL), a compressed representation the model reads directly",
-      "Achieves roughly 10x prompt compression compared to passing raw conversation history",
-      "Qwen2.5 fine-tuned via QLoRA to reason from compressed SPL tokens without decompressing back to words, served locally through Ollama",
+      "Real-time dispatch map matches riders on overlapping routes using Redis geospatial lookups at ~34ms latency",
+      "Scores each potential pool match and estimates solo vs. shared fare before confirming a route",
+      "Live driver availability, route detour %, and a full pricing breakdown surfaced to dispatchers",
     ],
-    category: "AI Systems",
-    tags: ["Python", "Ollama", "Qwen2.5", "LoRA", "ChromaDB", "SQLite", "spaCy"],
-    image: "/projects/semantic-memory-engine.jpg",
-    github: "https://github.com/Mprince29/Semantic-Memory-Engine",
+    category: "Backend Systems",
+    tags: ["Python", "Redis", "GeoSpatial"],
+    image: "/projects/shared-ride-engine.jpg",
+    github: null,
     live: null,
     featured: true,
-    highlight: "10x compression · Fine-tuned local models",
+    highlight: "Sub-millisecond Redis Matching",
   },
 ]
 

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
-import { askStream, isApiConfigured, ApiError } from "@/lib/api";
+import { askStream } from "@/lib/api";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -20,8 +20,6 @@ export function ChatWidget() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [messages, open]);
 
-  if (!isApiConfigured()) return null;
-
   async function handleAsk(e: React.FormEvent) {
     e.preventDefault();
     const q = question.trim();
@@ -38,7 +36,7 @@ export function ChatWidget() {
         });
       }
     } catch (err) {
-      const detail = err instanceof ApiError ? err.message : "Something went wrong.";
+      const detail = err instanceof Error ? err.message : "Something went wrong.";
       setMessages((prev) => {
         const next = [...prev];
         next[next.length - 1] = { role: "assistant", text: `Sorry, I couldn't answer that. ${detail}` };
@@ -70,7 +68,7 @@ export function ChatWidget() {
                   <MessageCircle className="text-[var(--text-soft)]" size={20} />
                 </div>
                 <p className="text-sm text-[var(--text-soft)] px-4 leading-relaxed">
-                  Ask me anything about Prince's projects, skills, or experience.
+                  Ask me anything about Prince&apos;s projects, skills, or experience.
                 </p>
               </div>
             )}

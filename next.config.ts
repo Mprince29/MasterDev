@@ -1,12 +1,5 @@
 import type { NextConfig } from "next";
 
-// The backend lives on a separate origin (Render in production, localhost in dev).
-// CSP's connect-src must allow it explicitly, or the browser silently blocks every
-// fetch() the frontend makes to the API — forms, chat, and project data all break.
-const apiOrigin = process.env.NEXT_PUBLIC_API_URL
-  ? new URL(process.env.NEXT_PUBLIC_API_URL).origin
-  : "";
-
 const securityHeaders = [
   {
     key: "X-DNS-Prefetch-Control",
@@ -40,7 +33,8 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
-      `connect-src 'self'${apiOrigin ? ` ${apiOrigin}` : ""}`,
+      "connect-src 'self'",
+      "frame-src https://drive.google.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -56,10 +50,6 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
-    remotePatterns: [
-      { protocol: "https", hostname: "github.com" },
-      { protocol: "https", hostname: "media.licdn.com" },
-    ],
   },
 
   async headers() {

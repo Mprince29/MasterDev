@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { submitContact, isApiConfigured } from "@/lib/api";
+import { submitContact } from "@/lib/api";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -12,8 +12,6 @@ export function ContactForm() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-
-  if (!isApiConfigured()) return null;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
