@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import JourneyPageClient from "./JourneyPageClient";
 
 export const metadata: Metadata = {
-  title: "Journey | Master Prince — AI Engineer & Full Stack Developer",
+  title: "Journey | Master Prince — Lead Engineer",
   description:
-    "Master Prince's education and career timeline — from B.Tech CSE (AI) at Jamia Hamdard to building production AI systems at M37 Labs, Delhi.",
+    "Master Prince's education and career timeline — from B.Tech CSE (AI) at Jamia Hamdard to leading engineering at Sujho AI and building production AI systems.",
   alternates: { canonical: "/journey" },
   openGraph: {
     title: "Journey | Master Prince",

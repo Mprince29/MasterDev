@@ -9,6 +9,27 @@ interface ChatMessage {
   text: string;
 }
 
+function AssistantMessage({ text }: { text: string }) {
+  const normalized = text.replace(/\r\n/g, "\n").trim();
+  const sections = normalized.split(/\s*•\s*/);
+
+  if (sections.length === 1) {
+    return <span className="whitespace-pre-wrap break-words">{normalized}</span>;
+  }
+
+  const intro = sections[0].trim();
+  const bullets = sections.slice(1).map((bullet) => bullet.trim()).filter(Boolean);
+
+  return (
+    <div className="space-y-2 break-words">
+      {intro && <p>{intro}</p>}
+      <ul className="list-disc space-y-1.5 pl-4 marker:text-[var(--accent)]">
+        {bullets.map((bullet, index) => <li key={`${bullet}-${index}`}>{bullet}</li>)}
+      </ul>
+    </div>
+  );
+}
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState("");
@@ -48,9 +69,9 @@ export function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
       {open && (
-        <div className="mb-4 w-[22rem] sm:w-[24rem] h-[30rem] bg-[var(--surface)]/90 backdrop-blur-xl border border-[var(--line)] rounded-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="mb-4 h-[min(30rem,calc(100vh-7rem))] w-[calc(100vw-2rem)] max-w-[24rem] bg-[var(--surface)] border border-[var(--line)] rounded-3xl shadow-[0_20px_40px_-15px_rgba(55,42,31,0.14)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
           <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--line)]/50 bg-[var(--surface)]/50">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -75,13 +96,13 @@ export function ChatWidget() {
             {messages.map((m, i) => (
               <div
                 key={i}
-                className={`text-[13px] rounded-2xl px-4 py-2.5 max-w-[85%] leading-relaxed ${
+                className={`text-[13px] rounded-2xl px-4 py-2.5 max-w-[88%] leading-relaxed ${
                   m.role === "user"
-                    ? "ml-auto bg-[var(--text)] text-[var(--surface)] shadow-sm rounded-br-sm"
+                    ? "ml-auto bg-[var(--accent)] text-white shadow-sm rounded-br-sm"
                     : "bg-[var(--bg-soft)] text-[var(--text)] border border-[var(--line)]/50 rounded-bl-sm"
                 }`}
               >
-                {m.text || (streaming && i === messages.length - 1 ? (
+                {m.text ? (m.role === "assistant" ? <AssistantMessage text={m.text} /> : <span className="whitespace-pre-wrap break-words">{m.text}</span>) : (streaming && i === messages.length - 1 ? (
                   <span className="flex items-center gap-1 h-5">
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }} />
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -104,7 +125,7 @@ export function ChatWidget() {
             <button
               type="submit"
               disabled={streaming || !question.trim()}
-              className="p-2.5 rounded-full bg-[var(--text)] text-[var(--surface)] disabled:opacity-50 hover:scale-105 transition-transform active:scale-95"
+              className="p-2.5 rounded-full bg-[var(--accent)] text-white disabled:opacity-50 hover:scale-105 transition-transform active:scale-95"
             >
               <Send size={16} className={question.trim() ? "translate-x-0.5 -translate-y-0.5 transition-transform" : ""} />
             </button>
@@ -114,10 +135,10 @@ export function ChatWidget() {
 
       <button
         onClick={() => setOpen((v) => !v)}
-        className="group relative w-14 h-14 rounded-full bg-[var(--text)] text-[var(--surface)] shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300"
+        className="group relative w-14 h-14 rounded-full bg-[var(--accent)] text-white shadow-[0_8px_30px_rgba(55,42,31,0.22)] flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300"
         aria-label="Open chat"
       >
-        <div className="absolute inset-0 rounded-full bg-[var(--text)] opacity-0 group-hover:animate-ping" />
+        <div className="absolute inset-0 rounded-full bg-[var(--accent)] opacity-0 group-hover:animate-ping" />
         {open ? <X size={22} className="relative z-10" /> : <MessageCircle size={22} className="relative z-10" />}
       </button>
     </div>

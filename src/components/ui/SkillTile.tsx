@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import {
-  BrainCircuit, Database, Users, Cpu, Zap, Network, Globe,
+  BrainCircuit, Database, Users, Cpu, Zap, Network, FileText, Cloud, GitBranch,
 } from "lucide-react";
 import {
   SiPython, SiJavascript, SiTypescript, SiNextdotjs, SiReact,
-  SiFastapi, SiNodedotjs, SiStreamlit, SiOpencv,
+  SiFastapi, SiNodedotjs,
   SiMongodb, SiPostgresql, SiPrisma, SiDocker, SiAmazonaws, SiVercel,
 } from "react-icons/si";
 import { Code } from "lucide-react";
@@ -19,7 +19,6 @@ const LANGUAGES = [
   { name: "React",      Icon: SiReact,      color: "#61DAFB" },
   { name: "FastAPI",    Icon: SiFastapi,    color: "#009688" },
   { name: "Node.js",    Icon: SiNodedotjs,  color: "#339933" },
-  { name: "Streamlit",  Icon: SiStreamlit,  color: "#FF4B4B" },
 ];
 
 const DATA_CLOUD = [
@@ -28,21 +27,27 @@ const DATA_CLOUD = [
   { name: "ChromaDB",   Icon: Database,     color: "#E44332" },
   { name: "Qdrant",     Icon: Database,     color: "#24386C" },
   { name: "Prisma",     Icon: SiPrisma,     color: "#2D3748" },
+  { name: "Redis",      Icon: Database,     color: "#DC2626" },
+  { name: "GCP",        Icon: Cloud,        color: "#4285F4" },
+  { name: "GCS",        Icon: Cloud,        color: "#34A853" },
+  { name: "Firestore",  Icon: Database,     color: "#FFCA28" },
+  { name: "Neo4j",      Icon: Network,      color: "#008CC1" },
   { name: "Docker",     Icon: SiDocker,     color: "#2496ED" },
   { name: "AWS",        Icon: SiAmazonaws,  color: "#FF9900" },
   { name: "Vercel",     Icon: SiVercel,     color: "#000000" },
 ];
 
 const AI_ML = [
+  { name: "LLM APIs",    Icon: BrainCircuit, color: "#412991" },
+  { name: "RAG",         Icon: Database,     color: "#0EA5E9" },
   { name: "LangChain",   Icon: Network,      color: "#1C3C3C" },
   { name: "LiteLLM",     Icon: Cpu,          color: "#6366F1" },
-  { name: "OpenAI",      Icon: BrainCircuit, color: "#412991" },
-  { name: "RAG",         Icon: Database,     color: "#0EA5E9" },
-  { name: "Multi-Agent", Icon: Users,        color: "#8B5CF6" },
   { name: "MCP",         Icon: Cpu,          color: "#F59E0B" },
-  { name: "OpenCV",      Icon: SiOpencv,     color: "#5C3EE8" },
-  { name: "LoRA / MLX",  Icon: Zap,          color: "#10B981" },
-  { name: "Selenium",    Icon: Globe,        color: "#43B02A" },
+  { name: "OCR",         Icon: FileText,     color: "#2563EB" },
+  { name: "LoRA / QLoRA", Icon: Zap,         color: "#10B981" },
+  { name: "Local Inference", Icon: Users,   color: "#8B5CF6" },
+  { name: "CI/CD",        Icon: GitBranch, color: "#D65D46" },
+  { name: "AI Code Review", Icon: Cpu,     color: "#A84234" },
 ];
 
 function Tile({ name, Icon }: { name: string; Icon: React.ElementType; color?: string }) {

@@ -108,7 +108,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--text)] text-[var(--surface)] hover:bg-[#1a1815] transition-colors text-sm font-medium shadow-sm disabled:opacity-60"
+        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--accent)] text-white hover:bg-[var(--accent-dark)] transition-colors text-sm font-semibold shadow-[0_10px_30px_rgba(151,63,47,0.14)] disabled:opacity-60"
       >
         <Send size={16} />
         {status === "submitting" ? "Sending..." : "Send message"}

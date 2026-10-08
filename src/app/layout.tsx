@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar"
 import "./globals.css"
 
 export const viewport: Viewport = {
-  themeColor: "#F3F1EC",
+  themeColor: "#f5f1ea",
   width: "device-width",
   initialScale: 1,
 }
@@ -13,20 +13,20 @@ const SITE_URL = "https://master-dev-pi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Master Prince | Full Stack Developer & Applied AI Engineer",
+  title: "Master Prince | Lead Engineer",
   description:
-    "Master Prince builds fast web apps, backend systems, and practical AI workflows for teams that need useful software without unnecessary complexity.",
+    "Master Prince is a Lead Engineer at Sujho AI building production AI systems across LLM agents, RAG, document AI, and reliable backend infrastructure.",
   keywords: [
-    "Full Stack Developer",
-    "AI Engineer",
+    "Lead Engineer",
+    "LLM Agents",
     "AI Developer",
-    "Applied AI Engineer",
+    "Document AI",
     "Software Developer",
     "React",
     "Next.js",
     "Python",
     "Machine Learning",
-    "Freelance Developer Delhi",
+    "Lead Engineer Delhi NCR",
   ],
   authors: [{ name: "Master Prince", url: SITE_URL }],
   creator: "Master Prince",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Master Prince | Full Stack Developer & Applied AI Engineer",
+    title: "Master Prince | Lead Engineer",
     description:
-      "Fast web apps, backend systems, and practical AI workflows built with clarity.",
+      "Production AI systems, LLM agents, RAG pipelines, and reliable backend infrastructure built end-to-end.",
     url: SITE_URL,
     siteName: "Prince Portfolio",
     type: "website",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Master Prince | Full Stack Developer & Applied AI Engineer",
-    description: "Building practical AI systems and full-stack web applications.",
+    title: "Master Prince | Lead Engineer",
+    description: "Building production AI systems across LLM agents, RAG, document AI, and local inference.",
   },
 }
 
@@ -62,7 +62,7 @@ const personJsonLd = {
   "@type": "Person",
   name: "Master Prince",
   url: SITE_URL,
-  jobTitle: "Full Stack Developer & Applied AI Engineer",
+  jobTitle: "Lead Engineer",
   address: { "@type": "PostalAddress", addressLocality: "Delhi", addressCountry: "IN" },
   sameAs: [
     "https://github.com/Mprince29",

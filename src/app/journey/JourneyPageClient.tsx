@@ -55,10 +55,18 @@ export default function JourneyPageClient() {
       badge: "Internship"
     },
     {
-      title: "Full Stack Developer · Applied AI",
+      title: "Full Stack AI Developer",
       subtitle: "M37 Labs",
-      date: "May 2025 – June 2026",
-      description: "Building production AI systems for enterprise clients across India and Malaysia   multi-agent automation, NL-to-SQL search, AI recruitment, and brand intelligence tools.",
+      date: "May 2025 – Jul 2026",
+      description: "Shipped 5+ production LLM agentic systems, RAG pipelines, MCP servers, document AI, and backend infrastructure for enterprise clients.",
+      icon: <FaBriefcase className="text-white text-xl" />,
+      badge: "Full-time"
+    },
+    {
+      title: "Lead Engineer",
+      subtitle: "Sujho AI",
+      date: "Aug 2026 – Present",
+      description: "Leading engineering for an AI teaching-assistant platform for Indian K-12 tutoring across teacher, student, and parent agents, while setting up CI/CD, automated tests, AI-assisted review, and GCP delivery infrastructure.",
       icon: <FaBriefcase className="text-white text-xl" />,
       badge: "Full-time"
     }
@@ -99,7 +107,7 @@ export default function JourneyPageClient() {
             A timeline of my educational and professional journey, showcasing my growth.
           </motion.p>
           
-          <Timeline items={timelineItems.map(item => ({
+          <Timeline items={timelineItems.slice().reverse().map(item => ({
             ...item,
             icon: <div className="text-[var(--bg)]">{item.icon}</div>
           }))} className="mt-16" />

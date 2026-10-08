@@ -32,7 +32,6 @@ export function Navbar() {
     { name: "About", href: isHome ? "#about" : "/#about" },
     { name: "Experience", href: isHome ? "#experience" : "/#experience" },
     { name: "Projects", href: "/project" },
-    { name: "Products", href: "/products" },
     { name: "Journey", href: "/journey" },
   ];
 
@@ -44,7 +43,7 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
           scrolled
-            ? "w-[95%] max-w-2xl bg-[var(--surface)]/70 backdrop-blur-xl border border-[var(--line)] shadow-sm"
+            ? "w-[95%] max-w-2xl bg-[var(--surface)] border border-[var(--line)] shadow-sm"
             : "w-[95%] max-w-3xl bg-transparent border-transparent"
         } rounded-full flex items-center justify-between px-6 py-3`}
       >
@@ -72,7 +71,7 @@ export function Navbar() {
             href={hero.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex text-xs font-semibold px-4 py-2 bg-[var(--text)] text-[var(--bg)] rounded-full hover:scale-105 transition-transform"
+            className="hidden md:inline-flex text-xs font-semibold px-4 py-2 bg-[var(--accent)] text-white rounded-full hover:bg-[var(--accent-dark)] hover:scale-105 transition-all"
           >
             Resume
           </a>
@@ -115,7 +114,7 @@ export function Navbar() {
                   href={hero.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex text-sm font-semibold px-6 py-3 bg-[var(--text)] text-[var(--bg)] rounded-full"
+                  className="inline-flex text-sm font-semibold px-6 py-3 bg-[var(--accent)] text-white rounded-full"
                 >
                   Download Resume
                 </a>

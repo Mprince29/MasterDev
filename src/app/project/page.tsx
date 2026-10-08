@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import ProjectPageClient from "./ProjectPageClient";
 
 export const metadata: Metadata = {
-  title: "Projects | Master Prince — AI Engineer & Full Stack Developer",
+  title: "Projects | Master Prince — Lead Engineer",
   description:
-    "AI systems, recruitment platforms, and full-stack products built by Master Prince — including multi-agent workflow automation, NL-to-SQL search, and fine-tuned local LLMs.",
+    "AI systems, backend platforms, and full-stack projects built by Master Prince — including multi-agent workflows, RAG, document AI, and fine-tuned local LLMs.",
   alternates: { canonical: "/project" },
   openGraph: {
     title: "Projects | Master Prince",
     description:
-      "AI systems, recruitment platforms, and full-stack products built by Master Prince.",
+      "AI systems, backend platforms, and full-stack projects built by Master Prince.",
     url: "/project",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Projects | Master Prince",
-    description: "AI systems, recruitment platforms, and full-stack products built by Master Prince.",
+    description: "AI systems, backend platforms, and full-stack projects built by Master Prince.",
   },
 };
 

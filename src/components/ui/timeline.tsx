@@ -19,7 +19,7 @@ interface TimelineProps {
 
 export function Timeline({ items, className }: TimelineProps) {
   return (
-    <div className={cn("relative flex flex-col gap-16 sm:gap-24", className)}>
+    <div className={cn("relative", className)}>
       {items.map((item, index) => (
         <motion.div
           key={index}
@@ -27,34 +27,34 @@ export function Timeline({ items, className }: TimelineProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative flex flex-col md:flex-row gap-6 md:gap-12 lg:gap-20 items-start"
+          className="group relative grid grid-cols-1 md:grid-cols-[190px_minmax(0,1fr)] gap-3 md:gap-10 items-start py-7 first:pt-0 border-t border-[var(--line)]"
         >
           {/* Left Column: Date & Badge */}
-          <div className="w-full md:w-1/3 flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-2 shrink-0 md:sticky md:top-24">
+          <div className="flex flex-row md:flex-col items-start gap-3 md:gap-2 shrink-0">
             {item.date && (
-              <span className="text-xl sm:text-2xl font-serif font-bold text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors duration-500">
+              <span className="text-sm sm:text-base font-semibold text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors duration-300">
                 {item.date}
               </span>
             )}
             {item.badge && (
-              <span className="text-[10px] uppercase tracking-widest font-semibold text-[var(--accent)] bg-[var(--bg-soft)] px-3 py-1 rounded-full border border-[var(--line)]">
+              <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[var(--accent)] bg-[var(--bg-soft)] px-2.5 py-1 rounded-full border border-[var(--line)]">
                 {item.badge}
               </span>
             )}
           </div>
 
           {/* Right Column: Content */}
-          <div className="w-full md:w-2/3 flex flex-col pb-8 md:pb-0 border-b border-[var(--line)] md:border-none">
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[var(--text)] leading-tight mb-2">
+          <div className="w-full flex flex-col">
+            <h3 className="text-xl sm:text-2xl font-serif font-bold text-[var(--text)] leading-tight mb-1">
               {item.title}
             </h3>
             {item.subtitle && (
-              <h4 className="text-base sm:text-lg text-[var(--text-soft)] font-medium mb-4">
+              <h4 className="text-base text-[var(--text-soft)] font-medium mb-2">
                 {item.subtitle}
               </h4>
             )}
             {item.description && (
-              <p className="text-[var(--text-muted)] text-sm sm:text-base leading-relaxed font-light">
+              <p className="max-w-2xl text-[var(--text-muted)] text-sm sm:text-[15px] leading-relaxed">
                 {item.description}
               </p>
             )}
@@ -63,4 +63,4 @@ export function Timeline({ items, className }: TimelineProps) {
       ))}
     </div>
   );
-} 
+}

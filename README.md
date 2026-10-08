@@ -42,7 +42,7 @@ A modern, animated developer portfolio built with Next.js, React and Tailwind CS
 ## 🙋‍♂️ Contact
 - [GitHub](https://github.com/Mprince29)
 - [LinkedIn](https://www.linkedin.com/in/master-prince-83609b257/)
-- Email: prince28.01.2022@email.com
+- Email: prince28.01.2022@gmail.com
 
 ---
 
