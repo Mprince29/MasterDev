@@ -2,6 +2,8 @@ import type { NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 import { hero } from "@/data/portfolio";
 
+export const runtime = "nodejs";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Best-effort per-IP rate limit. Resets on cold start — acceptable for a
@@ -34,7 +36,7 @@ export async function POST(req: NextRequest): Promise<Response> {
   const name = (body.name ?? "").trim();
   const email = (body.email ?? "").trim();
   const message = (body.message ?? "").trim();
-  const sourcePage = (body.source_page ?? "/").trim();
+  const sourcePage = (body.source_page ?? "/").trim().slice(0, 300);
 
   if (!name || name.length > 120 || !email || email.length > 254 || !EMAIL_RE.test(email) || !message || message.length > 5000) {
     return Response.json({ error: "Please fill in all fields correctly." }, { status: 400 });

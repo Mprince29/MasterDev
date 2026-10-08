@@ -1,17 +1,7 @@
 import type { Metadata, Viewport } from "next"
-import { Newsreader } from "next/font/google"
 import { ChatWidget } from "@/components/ChatWidget"
 import { Navbar } from "@/components/Navbar"
 import "./globals.css"
-
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
-  display: "swap",
-  preload: true,
-})
 
 export const viewport: Viewport = {
   themeColor: "#F3F1EC",
@@ -91,7 +81,7 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`scroll-smooth bg-[var(--bg)] ${newsreader.variable}`} data-scroll-behavior="smooth">
+    <html lang="en" className="scroll-smooth bg-[var(--bg)]" data-scroll-behavior="smooth">
       <body className="antialiased overflow-x-hidden min-h-screen text-[var(--text)] font-sans" suppressHydrationWarning>
         <script
           type="application/ld+json"

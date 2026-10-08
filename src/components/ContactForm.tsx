@@ -28,9 +28,13 @@ export function ContactForm() {
       setName("");
       setEmail("");
       setMessage("");
-    } catch {
+    } catch (err) {
       setStatus("error");
-      setErrorMessage("Something went wrong sending your message. Please try again or email me directly.");
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong sending your message. Please try again or email me directly."
+      );
     }
   }
 

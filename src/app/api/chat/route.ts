@@ -68,6 +68,19 @@ function textResponse(text: string, status = 200): Response {
   return new Response(text, { status, headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }
 
+function enqueueSseLine(line: string, controller: ReadableStreamDefaultController<Uint8Array>, encoder: TextEncoder) {
+  if (!line.startsWith("data: ")) return;
+  try {
+    const payload = JSON.parse(line.slice("data: ".length));
+    const parts = payload?.candidates?.[0]?.content?.parts ?? [];
+    for (const part of parts) {
+      if (typeof part.text === "string") controller.enqueue(encoder.encode(part.text));
+    }
+  } catch {
+    // Ignore malformed or non-content SSE lines.
+  }
+}
+
 export async function POST(req: NextRequest): Promise<Response> {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (isRateLimited(ip)) {
@@ -128,26 +141,24 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   const stream = new ReadableStream<Uint8Array>({
     async pull(controller) {
-      const { done, value } = await reader.read();
-      if (done) {
-        controller.close();
-        return;
-      }
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() ?? "";
-      for (const line of lines) {
-        if (!line.startsWith("data: ")) continue;
-        try {
-          const payload = JSON.parse(line.slice("data: ".length));
-          const parts = payload?.candidates?.[0]?.content?.parts ?? [];
-          for (const part of parts) {
-            if (typeof part.text === "string") controller.enqueue(encoder.encode(part.text));
-          }
-        } catch {
-          // ignore malformed SSE line
+      try {
+        const { done, value } = await reader.read();
+        if (done) {
+          buffer += decoder.decode();
+          if (buffer) enqueueSseLine(buffer.trimEnd(), controller, encoder);
+          controller.close();
+          return;
         }
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? "";
+        for (const line of lines) enqueueSseLine(line.trimEnd(), controller, encoder);
+      } catch {
+        controller.close();
       }
+    },
+    cancel() {
+      void reader.cancel();
     },
   });
 
